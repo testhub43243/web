@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css?v=1" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<!--<title>服务申请_专家咨询_小鲤鱼育儿_母婴私人医生</title>-->
+		<title>请填写联系电话</title>
+	</head>
+
+	<body style="background-color: #fff;">
+		<div class="top">
+			<p>请填写联系电话</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+		</div>
+		<div class="link">
+			<div class="state">
+				<p>付费后，健康顾问将在10分钟内主动联系您，与您确认要咨询的问题，收集整理您的病情资料，然后安排专家与您通话。</p>
+				<span>注：21:00之后付费将在次日9:30之前联系您</span>
+				<div class="telnum">
+					<div class="tel">
+						<span>
+							<img src="/website/images/fuwu/tel.png" alt="" />
+						</span>
+					</div>
+					<input type="tel" placeholder="手机号码" maxlength="11" id="in_cm" value="" />
+				</div>
+				<u class="write">如有特殊情况或需求，请点击此处填写（选填）</u>
+				<div class="clear"></div>
+				<div class="text">
+					<textarea name="" class="comm" id="in_cc" placeholder="如有特殊情况或需求，请在此处填写（选填）"></textarea>
+					<span class="cancle">取消</span>
+				</div>
+				<div class="telbtn">
+					<a href="javascript:;">确认</a>
+				</div>
+			</div>
+		</div>
+		<div class="tanchuang">
+			<div class="tanc-tishi">
+				<!--<h3>请支付</h3>-->
+				<p class='tanc-word'></p>
+				<div class="tan-btn">
+					<a href="javascript:;">确认</a>
+					<!--<a href="javascript:;">支付失败</a>-->
+				</div>
+
+			</div>
+		</div>
+		<div class="mask"></div>
+		<script>
+			var pk = '<%- pk %>';
+			var create_contract_http = '<%- create_contract_http %>';
+			var get_pay_info_http = '<%- get_pay_info_http %>';
+			var get_related_orders_http = undefined;
+			var title = '<%- title %>';
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+			var write_log_http = '<%- write_log_http %>';
+			var upload_http = '<%- upload_http %>';
+			var uuid = '<%- uuid %>';
+		</script>
+		<script type="text/javascript" src="/website/javascripts/fuwu/base.js"></script>
+	</body>
+
+</html>

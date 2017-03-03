@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title><%= title %></title>
+		<meta name="keywords" content="<%= kw %>" />
+		<meta name="description" content="<%= descr %>" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" type="text/css" href="/website/stylesheets/common.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (max-width:992px),only screen and(max-device-width:992px)" href="/website/stylesheets/seo/order_mobile.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (min-width:992px),only screen and(min-device-width:992px)" href="/website/stylesheets/seo/order_wide.css" />
+	</head>
+
+	<body class="bodyBg">
+		<div class="wrap">
+			<div id="header">
+				<a class="logo"></a>
+				<ul class="nav">
+					<li><a href="http://www.tiaolm.com">首页</a><span></span>
+					</li>
+					<li><a href="/mis/document/app_view">评测</a><span></span>
+					</li>
+					<li><a href="/mis/doc_list/Jn8pJC04f2d_bG5_cX8pNDl_Z39va2hkf3F_KTN_Z38BKGk7OTkBKGhta2h_IA.html">知识</a><span></span>
+					</li>
+					<li><a href="/mis/document/service_view">服务</a><span></span>
+					</li>
+				</ul>
+				<span class="hotline"></span>
+			</div>
+			<!--****************主体添加内容******************-->
+			<div id="subLeft">
+				<!--头部-->
+				<header class="head">
+					<div class="headLeft">
+						<img src="/website/images/seo/seo_headLeft.png" />
+					</div>
+					<div class="headCenter">
+						电话咨询案例
+					</div>
+					<div class="headRight">
+						<img src="/website/images/seo/seo_headRight.png" />
+					</div>
+				</header>
+				<!--标题-->
+				<div class="headline">
+					<div class="headlineTxt">
+						<%= orderTitle %>
+					</div>
+				</div>
+				<!--宝宝情况-->
+				<div class="baby">
+					<div class="babyHead">
+						<div class="babyHeadTxt">
+							宝宝情况 <span class="mark">:</span>
+						</div>
+					</div>
+					<div class="babySituation">
+						<div class="babyInfoHead">
+							<span><%= memberAge %><%= memberSex %></span>&nbsp;&nbsp;&nbsp;<span class="babyName"><%= memberName %></span>
+						</div>
+						<div class="babyInfo">
+							<%- orderDetail %>
+						</div>
+					</div>
+<!--
+					<div class="babySituation refer">
+						<div class="babyInfoHead">
+							咨询问题 <span class="mark">:</span>
+						</div>
+						<div class="babyInfo ask">
+						</div>
+					</div>-->
+					<div class="medicalCase clearfix">
+						<div class="medicalPic fl">
+							<img src="/website/images/seo/order_medicalPic.png" />
+						</div>
+						<div class="medicalTxt fr">
+							病历图片仅医生与用户本人可见
+						</div>
+					</div>
+				</div>
+				<!--通话专家-->
+				<div class="expert">
+					<div class="babyHead">
+						<div class="babyHeadTxt">
+							通话专家 <span class="mark">:</span>
+						</div>
+					</div>
+					<div class="expertSituation">
+						<div class="expertWrap">
+							<div class="expertPic fl">
+								<img src="http://www.tiaolm.com/website/images/thumbnail/<%= doctorId %>.jpg" />
+							</div>
+							<div class="expertTxt fl">
+								<div class="expertName">
+									<%= doctorName %>&nbsp;&nbsp;&nbsp;<%= doctorTitle %>
+								</div>
+								<div class="expertInfo">
+									<span class="hospital"><%= doctorHospital %></span>
+									<sapn class="department">
+										<%= doctorDepartment %>
+									</sapn>
+								</div>
+							</div>
+						</div>
+						<div id="expertAdvantage" class="expertAdvantage clearfix">
+							<span class="spaceRight fl">擅长 :</span>
+							<p>
+								<%= doctorAdept %>
+							</p>
+						</div>
+						<div id="expertIntro" class="expertAdvantage expertIntro clearfix">
+							<span class="spaceRight fl">简介 :</span>
+							<p>
+								<%= doctorDescr %>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--通话时间-->
+				<div class="time">
+					<div class="babyHead">
+						<div class="babyHeadTxt">
+							通话时间 <span class="mark">:</span>
+						</div>
+					</div>
+					<div class="timeTxt">
+						<%- talkTime %>
+					</div>
+				</div>
+				<!--服务反馈-->
+				<div class="serve">
+					<div class="babyHead">
+						<div class="babyHeadTxt">
+							服务反馈 <span class="mark">:</span>
+						</div>
+					</div>
+					<div class="serveWrap">
+						<div class="medicalStar">
+							<span class="medicalstar">医术</span>
+							<span class="able">服务能力</span>
+							<%- serviceCapacity %>
+						</div>
+						<div class="serveStar">
+							<span class="servestar">服务</span>
+							<span class="attitude">服务态度</span>
+							<%- serviceManner %>
+						</div>
+						<div class="record">
+							<%= feedbackContent %>
+						</div>
+					</div>
+				</div>
+				<!--spaceTop-->
+				<div class="spaceTop"></div>
+				
+                                <% if(tags.length) { %>
+				<div class="tagWrap clearfix">
+					<div class="tag fl">
+						标签<small class="Tag">Tag</small>
+					</div>
+					<ul class="nav navbar clearfix">
+						<% for(var i=0; i<tags.length; i++) {%>
+							<li>
+                                                            <!--标签
+								<a href="/mis/seointerface/order_detail/<%= tags[i].tk %>">
+									<%= tags[i].tn %>
+								</a>
+                                                            -->
+                                                            <%= tags[i].tn %>
+							</li>
+							<% } %>
+					</ul>
+				</div>
+                                <% } %>
+                                
+                                <% if(relativeOrder.length) {%>
+				<!--其他文章-->
+				<div class="otherTxt ">
+					<div class="babyHead">
+						<div class="babyHeadTxt babyOtherHead">
+							<span class="babyHeadWide">看过本案例的父母还看了</span>
+							<span class="babyHeadMobile">看过本案例的父母还看了</span>
+						</div>
+					</div>
+					<ul class="otherTxtWrap">
+						<% for(var j=0; j<relativeOrder.length; j++) {%>
+							<li class="txtList clearfix">
+								<a href="/zixun/<%= relativeOrder[j].ok %>">
+									<div class="txtHead">
+										<%= relativeOrder[j].ot %>
+											<div class="hot"></div>
+									</div>
+									<div class="txtOtherInfo clearfix">
+										<div class="fl">
+											<div class="doctorName fl">
+												<%= relativeOrder[j].od %>
+											</div>
+											<div class="doctorJobTitle fl">
+												<%= relativeOrder[j].odt %>
+											</div>
+											<div class="hospitalName fl">
+												<%= relativeOrder[j].odh%>
+											</div>
+											<div class="doctorSection fl">
+												<%= relativeOrder[j].odde %>
+											</div>
+										</div>
+										<div class="fr">
+											<div class="phoneTime fl">
+												通话时间 :
+											</div>
+											<div class="publishData fl">
+												<%= relativeOrder[j].ott %>
+											</div>
+										</div>
+
+									</div>
+								</a>
+							</li>
+							<% } %>
+
+					</ul>
+
+				</div>
+                                <% } %>
+				<div class="spaceTop spaceBottom"></div>
+
+
+				<div class="moduleConsult" onclick='<%= clickFunc %>'>
+					<div class="ask">
+						<%= askContent %>
+					</div>
+					<div class="analyze">
+						<%= analyzeContent %>
+					</div>
+					<div class="order">
+						<%= orderContent %>
+					</div>
+					<div class="consult">
+						我要咨询
+					</div>
+				</div>
+				<div class="spaceTop"></div>
+				<div class="moduleConsult client" onclick='todownload()'>
+					<div class="logo">
+						<img src="/website/images/seo/logo.png" />
+					</div>
+					<div class="analyze">
+						知名三甲儿科医生推荐
+					</div>
+					<div class="order">
+						科学记录成长,随时咨询专家
+					</div>
+					<div class="consult">
+						客户端下载
+					</div>
+				</div>
+				<div class="spaceTop"></div>
+			</div>
+
+			<!--主体添加内容结束-->
+			<div id="subRight">
+				<br>
+				<div class="title">关注宝宝 成长测评</div>
+				<p>
+					<img src="/website/images/seo/seo_picTest.jpg" />
+				</p>
+			</div>
+		</div>
+
+		<br class="clear" />
+		
+		<div class="subFooter">Copyright 2013-2015 凡鱼创想. All Rights Reserved
+			<br>京ICP备13035987号 <a href="/mis/document/certificate_view">京卫网审[2014]第0226号</a>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</body>
+	<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="/website/javascripts/alert.js"></script>
+        <script type="text/javascript" src="/website/javascripts/seo/download.js"></script>
+	<script src="/website/javascripts/seo/order_index.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

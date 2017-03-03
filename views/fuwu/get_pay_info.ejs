@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<!--<title>支付_专家咨询_小鲤鱼育儿_母婴私人医生</title>-->
+		<title>支付</title>
+	</head>
+	<body>
+		<div class="top">
+			<p>支付</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+		</div>
+		<div class="pay">
+			<div>
+				<span><%- pn %></span>
+				<span>¥<%- pp %></span>
+			</div>
+		</div>
+		<div class="payway">
+			<dl>
+				<dt>在线支付</dt>
+				<% if( s && s == 1){ %>
+				<dd pid="1">
+					<img src="/website/images/fuwu/zhifubao.png" alt="" />
+					<span>支付宝</span>
+				</dd>
+				<% } %>
+			</dl>
+		</div>
+		<div class="alertbox">
+			<div class="tishi">
+				<p>请到新打开的第三方支付页面完成支付操作</p>
+			</div>			
+			<a href="javascript:;">支付成功</a>
+			<a href="javascript:;">支付失败，重新支付</a>
+		</div>
+		<div class="mask"></div>
+		<script>
+			var ali_pu_url = '<%- pu %>';
+			var pk = undefined;
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+			var write_log_http = '<%- write_log_http %>';
+			var upload_http = '<%- upload_http %>';
+			var pono = '<%- pono %>';
+			var uuid = '<%- uuid %>';
+			var service_index_http = '<%- service_index_http %>';
+		</script>
+		<script type="text/javascript" src="/website/javascripts/fuwu/base.js"></script>
+	</body>
+</html>

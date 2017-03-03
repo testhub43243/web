@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册成功</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body>
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+</script>
+<!-- start -->
+    <div class="zhucechenggong-top"></div>
+    <div class="zhucechenggong-cen">
+        <span>请下载安装小鲤鱼育儿APP</span>
+        <p>用您的手机号码登录</p>
+        <p>即可随时掌握宝宝的生长发育情况，</p>
+        <p>获得权威评测报告</p>
+        <p>同时体验小鲤鱼会员服务</p>
+    </div>
+    <div class="zhuce zhucechenggong"><a href="<%- down_app_http %>">立即下载小鲤鱼app</a></div>
+
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

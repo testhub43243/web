@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/pingc/swiper.min.css" />
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery.min.js"></script>
+		<script type="text/javascript" src="/website/javascripts/store.min.js"></script>
+<<<<<<< .mine
+		<script type="text/javascript" src="/website/javascripts/libs/jquery.client.js"></script>
+=======
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+
+>>>>>>> .r7885
+		<title>综合报告首页</title>
+	</head>
+
+	<body>
+
+		<% if(para.uk){%>
+		<div class="report-index">
+			<div class="babyreportinfo">
+				<div class="content">
+					<div class="header">
+						<img src="/website/images/pingc/babypic.png" alt="" class="babyimg" />
+						<span>
+					<i class="member-name"><%- md[0].n%></i>
+					<i class="member-age"><%- getWeekMonthYear(md[0].b)%></i>
+					
+					<input type="text" id="mid" value="<%- md[0].mid%>" style="display: none;"/>
+				</span>
+						<i class="editbao"></i>
+						<a href="javascript:;" class="addaction">
+							<img src="/website/images/pingc/addaction.png" alt="" />
+						</a>
+					</div>
+					<div class="report">
+						<div class="reportscore">
+							<p><span class="rday"></span></p>
+							<p><span class="rfen"></span>鲤鱼分</p>
+							<h3></h3>
+						</div>
+						<div class="reportarr">
+							<img src="/website/images/pingc/arr-ri.png" alt="" />
+						</div>
+						<!--根据宝宝胖瘦分别显示不同图片，由胖到瘦-->
+						<img src="" alt="" class="cutebaby" />
+						<!--<img src="/website/images/pingc/jp.png" alt="" class="cutebaby" />-->
+						<!--<img src="/website/images/pingc/jk.png" alt="" class="cutebaby" />-->
+						<!--<img src="/website/images/pingc/js.png" alt="" class="cutebaby" />-->
+						<div class="pushmsg">
+							<p>
+
+							</p>
+						</div>
+					</div>
+					<a href="/fuwu/sale_page?spid=3" class="reportread">儿科医生报告解读</a>
+				</div>
+			</div>
+			<div class="bodycircle">
+				<div class="retitle">
+
+					<h4>体格生长曲线&nbsp; 
+						<span>
+							<%if(md[0].gd.length != 0){%>
+							（<%- getWeekMonthYear(md[0].b,md[0].gd[md[0].gd.length-1].rd)%>）
+							<%}%>
+						</span>
+					</h4>
+					<%if(md[0].gd.length != 0){%>
+					<input type="text" id="rdate" value='<%- getWeekMonthYear(md[0].gd[md[0].gd.length-1].rd)%>' style="display: none;" />
+					<%}%>
+					<i class='jiaozheng'>矫正后</i>
+
+					<a href="javascript:;" class="moreaction" id="moreaction">
+						<img src="/website/images/pingc/moreaction.png" alt="" />
+					</a>
+					<ul class="dataction" id="dataction">
+						<li>数据管理</li>
+						<li>添加数据</li>
+					</ul>
+				</div>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div id="weight" data-type='weight'></div>
+							<span>体重</span>
+						</div>
+						<div class="swiper-slide">
+							<div id="height" data-type='height'></div>
+							<span>身高</span>
+						</div>
+						<div class="swiper-slide">
+							<div id="headsize" data-type='headsize'></div>
+							<span>头围</span>
+						</div>
+						<div class="swiper-slide">
+							<div id="bmi" data-type='bmi'></div>
+							<span>BMI</span>
+						</div>
+					</div>
+					<!-- Add Scrollbar -->
+					<div class="swiper-scrollbar"></div>
+				</div>
+			</div>
+			<div class="movegrow">
+				<div class="retitle">
+					<h4>本月动作发育</h4>
+				</div>
+				<dl class="rbm">
+					<dt>大动作</dt>
+					<!--<dd>
+						<img src="" alt="" />
+						<span></span>
+					</dd>
+					<div class="clear"></div>-->
+				</dl>
+				<dl class='rfm'>
+					<dt>精细动作</dt>
+				</dl>
+			</div>
+			<div class="ability langabi">
+				<div class="retitle">
+					<h4>语言能力</h4>
+				</div>
+				<ul>
+
+				</ul>
+			</div>
+			<div class="ability reconabi">
+				<div class="retitle">
+					<h4>认知能力</h4>
+				</div>
+				<ul>
+
+				</ul>
+			</div>
+			<div class="footer">
+				<h4>本服务由小鲤鱼育儿提供</h4>
+				<dl>
+					<dd>
+						<a href="javascript:;"><u>意见反馈</u></a>
+					</dd>
+					<dd>
+						<a href="javascript:;"><u>关于我们</u></a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<!--鲤鱼分页-->
+		<div class="liyufen">
+			<div class="top">
+				<p>鲤鱼分说明</p>
+				<a href="javascript:void(0);" class="click_back"></a>
+			</div>
+			<div class="recordebox">
+				<div class="liyurecord">
+					<!--有鲤鱼分-->
+					<div class="hasliyu">
+						<p class="cedate">测量日期：
+							<span></span>
+						</p>
+						<h1></h1>
+						<a href="javascript:;" class="liyuask wen" id="liyuask">
+							<img src="/website/images/pingc/wenhao.png" alt="" />
+						</a>
+						<span class="version">Beta1.0</span>
+						<div class="liyububble" id="liyububble">
+							<p>鲤鱼分是小鲤鱼育儿总结的一个综合评价宝宝 当前生长发育状态的指标。该指标为百分制， 其算法来源于我们对小鲤鱼平台百万量级宝宝 数据的分析与国内国际多个测评标准的研究.
+							</p>
+						</div>
+					</div>
+
+					<!--无鲤鱼分-->
+					<div class="noliyu">
+						<h3>补充最新的身高体重数据<br>即可评估出鲤鱼分</h3>
+						<img src="/website/images/pingc/boy_wh.png" alt="" class="boy_wh" />
+						<a href="javascript:;" class="noliyuwen wen" id="liyuask">
+							<img src="/website/images/pingc/wenhao.png" alt="" />
+						</a>
+						<div class="liyububble" id="liyububble">
+							<p>鲤鱼分是小鲤鱼育儿总结的一个综合评价宝宝 当前生长发育状态的指标。该指标为百分制， 其算法来源于我们对小鲤鱼平台百万量级宝宝 数据的分析与国内国际多个测评标准的研究.
+							</p>
+						</div>
+					</div>
+
+					<p class="fenxi">
+
+					</p>
+				</div>
+				<div class="reminder">
+					<div class="risk">
+						<div class="remindertitle">
+							<h3>风险提示</h3>
+						</div>
+						<p>
+
+						</p>
+						<ul class="hide dl">
+
+						</ul>
+					</div>
+					<div class="ganyu hide">
+						<div class="remindertitle">
+							<h3>干预建议</h3>
+						</div>
+						<p>
+
+						</p>
+					</div>
+				</div>
+				<a href="/fuwu/sale_page?spid=3" class="jiedubtn">评测报告解读</a>
+				<img src="/website/images/pingc/liyudown.png" alt="" class="liyutg" />
+			</div>
+			<div class="radarchart">
+				<h3>鲤鱼分基于以下维度评估</h3>
+				<!--<canvas id="canvas" width="" height=""></canvas>-->
+				<input type="text" id="liyu" value='4,3,3,3,3' style="display: none;" />
+				<ul class="radarIntro" id="radarIntro">
+					<li class="bmiIntro blue cBlue click">
+						<img src="/website/images/pingc/rbmi.png" alt="" />
+						<p>匀称性</p>
+					</li>
+					<li class="heightIntro blue click">
+						<img src="/website/images/pingc/rheight.png" alt="" />
+						<p>身高/身长</p>
+					</li>
+					<li class="weightIntro blue click">
+						<img src="/website/images/pingc/rweight.png" alt="" />
+						<p>体重</p>
+					</li>
+					<li class="headsizeIntro blue click">
+						<img src="/website/images/pingc/rheadsize.png" alt="" />
+						<p>头围</p>
+					</li>
+					<li class="allIntro blue">
+						<img src="/website/images/pingc/rtrend.png" alt="" />
+						<p>发育趋势</p>
+					</li>
+
+					<canvas id="radar"></canvas>
+
+					<div class="radarmask">
+						<h3>请补充最新数据才能评估</h3>
+					</div>
+
+				</ul>
+			</div>
+		</div>
+		<!--底部导航-->
+		<div class="pingnav">
+			<ul id="pingnav">
+				<li>
+					<a href="javascript:;">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>发育评测</span>
+					</a>
+					<ul class="menu">
+						<li class='data-contr'>
+							数据管理
+						</li>
+						<li class='data-add'>
+							添加数据
+						</li>
+					</ul>
+				</li>
+				<li class='read-report'>
+					<a href="/fuwu/sale_page?spid=3">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>报告解读</span>
+					</a>
+				</li>
+				<li class='ask-erke'>
+					<a href="/fuwu/service_index">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>问儿科医生</span>
+					</a>
+				</li>
+				<li class='my-service'>
+					<a href="javascript:;">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>我的服务</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<%}else{%>
+		<img src="/website/images/pingc/reportindex.png" alt="" class="fakeimg"/>
+		<%}%>
+		<!--引导弹窗-->
+		<div class="releadbox">
+			<a href="javascript:;" class="releadbtn">我要评测</a>
+			<a href="javascript:;" class="whateval"><u>什么是生长发育评测</u></a>
+		</div>
+		<div class="mask"></div>
+	</body>
+
+</html>
+<script>
+	var uk = '<%- para.uk%>';
+	var get_all_data_standard_http = '<%- get_all_data_standard_http%>';
+	var get_userinfo_http = '<%- get_userinfo_http%>';
+	var growth_guide_by_age_http = '<%-growth_guide_by_age_http%>';
+	var eva_report_http = '<%- eva_report_http%>';
+	var write_log_http = '<%- write_log_http %>';
+	var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+</script>
+<script src="/website/javascripts/swiper.min.js"></script>
+<script>
+	var swiper = new Swiper('.swiper-container', {
+		scrollbar: '.swiper-scrollbar',
+		scrollbarHide: true,
+		slidesPerView: 'auto',
+		spaceBetween: 30,
+		grabCursor: true
+	});
+</script>
+<script>
+	//  单项报告页 弹窗禁用滚动条
+	function releadboxshow() {
+		$('.releadbox').show();
+		$('.mask').show();
+		$("html,body").css({
+			overflow: "hidden"
+		});
+	};
+	if(store.get('md') != undefined) {
+		var md = store.get('md')[0];
+		var tai = md.ga;
+		var birth_age = md.b;
+		var birth_cal;
+		var hpurl = md.hpurl;
+		$('.header img.babyimg').attr('src', hpurl);
+		if(md.gd.length != 0) {
+			var mea_day = md.gd[md.gd.length - 1].rd;
+			var day_age = dayage(mea_day, zaochan(tai, birth_age));
+			console.log(tai)
+			console.log(mea_day);
+			console.log(zaochan(tai, birth_age));
+			if(day_age <= 730) {
+				$('.jiaozheng').show();
+				$('.retitle h4 span').html('（' + day_age + '天）')
+			}
+		}
+		if(write_log_http) {
+			var para = {};
+			para.referer = document.referrer;
+			para.location = window.location.href;
+			para.os = $.fn.client.os;
+			para.browser = $.fn.client.browser;
+			para.dr = '' + window.screen.width + '*' + window.screen.height;
+			$.ajax({
+				type: 'post',
+				url: write_log_http,
+				data: para,
+				success: function(data) {},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		}
+
+		if(md.length == 0 || md.gd.length == 0) {
+			releadboxshow();
+		}
+
+		$('.releadbtn').on('touchend', function(e) {
+			var mid = $('#mid').val();
+			if(md.length == 0 || md[0].rel == 7 || !md) {
+				window.location.href = './add_baby_growth_index?mid=' + mid;
+			} else {
+				window.location.href = './add_growth_index?mid=' + mid;
+			}
+			e.preventDefault();
+		});
+
+		$('.liyufen .click_back').on('touchend', function() {
+			$('.report-index').show();
+			$('.liyufen').hide();
+			$(document).scrollTop(0);
+		});
+		$('.dataction li:first-child').on('touchend', function() {
+			window.location.href = './get_babys_list?mid=' + mid;
+		});
+		$('.dataction li:nth-child(2),.addaction').on('touchend', function() {
+			window.location.href = './add_growth_index?mid=' + mid;
+		});
+		$('.swiper-wrapper .swiper-slide>div').on('click', function() {
+			var type = $(this).attr('data-type');
+			window.location.href = './single_report?mid=' + mid + '&type=' + type;
+		});
+		$('.header .editbao').on('touchend', function() {
+			window.location.href = './edit_baby_index?mid=' + mid;
+		});
+		$('.data-contr').attr('url', './get_babys_list?mid=' + mid);
+		$('.data-add').attr('url', './add_growth_index?mid=' + mid);
+	} else {
+		releadboxshow();
+		$('.releadbtn').on('touchend', function(e) {
+			window.location.href = './add_baby_growth_index';
+			e.preventDefault();
+		});
+
+	}
+</script>
+<script type="text/javascript" src="/website/javascripts/pingc/chart.min.js"></script>
+<script type="text/javascript" src="/website/javascripts/pingc/jquery.flot.min.js"></script>
+<script src="/website/javascripts/pingc/report.js"></script>
+<script type="text/javascript" src="/website/javascripts/pingc/pingce.js"></script>

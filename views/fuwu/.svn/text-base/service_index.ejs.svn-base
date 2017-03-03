@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<title><% if(para.tpc == 'ybb'){ %>问儿科医生<% }else if(para.tpc == 'ybb_yq'){ %>问产科医生<% }else{ %>专家咨询服务_小鲤鱼育儿_母婴私人医生<% } %></title>
+	</head>
+
+	<body>
+		<div class="sertop">
+			<div class="center">
+				<div class="brandbox">
+					<a href="javascript:;" class="click_back serarr index_back"></a>
+					<img src="/website/images/fuwu/brand.png" alt="" class="brand" />
+				</div>
+				<img src="/website/images/fuwu/goodser.png" alt="" class="goodser" />
+				<% if(clurl){%>
+				<a href="<%- clurl %>" class="amyser"><img src="/website/images/fuwu/myser.png" alt="" class="myser" /></a>
+				<%}%>
+				<a href="javascript:;" class="click_back serarr index_back"></a>
+				<div class="word">
+					<!--<img src="/website/images/fuwu/askerke.png" alt="" data-value="问儿科医生" />-->
+				</div>
+				<div class="jump">
+					<span>问产科医生</span>
+					<img src="/website/images/fuwu/riarr.png" alt="" />
+				</div>
+			</div>
+		</div>
+		<!--订单提示-->
+		<% if(st){ %>
+		<div class="order" cu="<%- st.cu %>" cm="<%- st.cm %>" style="display:none;">
+			<img src="/website/images/fuwu/al.png" alt="" />
+			<span><%- st.d %>，<%- st.cm %>&nbsp;&nbsp;></span>
+		</div>
+		<% } %>
+		<div class="navbar">
+			<% for(var i = 0; i < sl.length; i++){ %>
+			<a href="javascript:;" class="click_sid" sid="<%- sl[i].sid %>">
+				<img src="<%- sl[i].siu %>" alt="" class="rep_src">
+				<span><%- sl[i].sn %></span>
+			</a>
+			<% } %>
+		</div>
+		<!--热门问题-->
+		<div class="hotq yhotq">
+			<div class="hotti">
+				<img src="/website/images/fuwu/spec.png" alt="" />
+				<img src="/website/images/fuwu/spewo.png" alt="" />
+				<span>截止 2016/12/30</span>
+			</div>
+			<ul>
+				<% for(var i = 0; i < sp.length; i++){ %>
+				<li spid="<%- sp[i].id %>" class="click_spid" awu="<%- sp[i].awu %>">
+					<img src="<%- sp[i].iu %>" alt="" />
+					<% if(sp[i].op != 0){ %>
+					<!--<div class="abst">
+						<p>
+							<%- sp[i].d %>
+						</p>
+					</div>-->
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="salepri"><small>￥</small>
+							<%- parseInt(sp[i].fp) %>.<small><%- (sp[i].fp).substr((sp[i].fp).indexOf('.')+1) %></small></p>
+						<p class="oldpri"><del>￥<%- sp[i].op %>.0</del></p>
+					</div>
+					<% }else{ %>
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="qask">
+							<%- sp[i].d %>
+						</p>
+					</div>
+					<% } %>
+				</li>
+				<% } %>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<!--浮层-->
+		<!--<div class="float">
+			<div class="flcenter">
+				<p><span class="bott_text">问儿科医生</span>：<span><small>￥</small>129.0</span></p>
+				<img src="/website/images/fuwu/tehui.png" alt="" class="tehui" />
+				<img src="/website/images/fuwu/fast.png" alt="" class="fast" />
+			</div>
+		</div>-->
+		<!--新浮层-->
+		<div class="ffloat float">
+			<div class="fprice">
+				<p><small>￥</small>99<span>￥<del>200</del></span></p>
+			</div>
+			<div class="fask">
+				<img src="/website/images/fuwu/ferke.png" alt="" />
+			</div>
+		</div>
+		
+		<!--最新咨询-->
+		<div class="section sersection">
+			<div class="title">
+				<img src="/website/images/fuwu/qa2.png" alt="" />
+				<span>最新咨询</span>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		var symid = '';
+		var spid = '';
+		var pk = '';
+		var dpk = '<%- dpk %>';
+		var get_related_orders_http = '<%- get_related_orders_http %>';
+		var get_sym_disease_http = '<%- get_sym_disease_http %>';
+		var sale_page_http = '<%- sale_page_http %>';
+		var sale_custom_http = '<%- sale_custom_http %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		var write_log_http = '<%- write_log_http %>';
+		var upload_http = undefined;
+		var uuid = '<%- uuid %>';
+	</script>
+	
+	<script type="text/javascript" src="/website/javascripts/fuwu/base.js"></script>
+</html>

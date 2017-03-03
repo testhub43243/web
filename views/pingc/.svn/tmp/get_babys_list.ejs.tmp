@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/swiper.min.css?v=7625" />
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css?v=7669" />
+		<script type="text/javascript" src="/website/javascripts/zepto.min.js?v=7336"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/store.min.js?v=7714"></script>
+		<script type="text/javascript" src="/website/javascripts/moment.min.js"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/common.js?v=7714"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.cookie.min.js"></script>
+		<title>数据管理</title>
+	</head>
+	<body>
+		<div class="top">
+			<p>数据管理</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+			<a href="javascript:void(0);" class="dataplus">
+				<img src="/website/images/pingc/addaction.png" alt="" />
+			</a>
+		</div>
+		<div class="data-manage">
+			
+		</div>
+		<div class="loading">
+			<img src="/website/images/pingc/loading.gif" alt="" />
+			<span>加载中…</span>
+		</div>
+		<div class="loaden">
+			已加载全部
+		</div>
+	</body>
+	<script>
+		var get_userinfo_http = '<%- get_userinfo_http %>';
+		var add_growth_index_http = '<%- add_growth_index_http %>';
+		var write_log_http = '<%- write_log_http %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		if( get_userinfo_http ){
+			if (!store.enabled){
+		        console.log('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.');
+	    	}
+			var ts = store.get('ts');
+			$.ajax({
+				type:"post",
+				url: get_userinfo_http,
+				data:{"uc": 'common',"ft":(ts)?ts.ft:'',"ut":(ts)?ts.ut:'',"st":(ts)?ts.st:''},
+				success: function(data){
+				console.log(data);
+				if(data.r == 0 ){
+					var md = (data.md)?data.md:store.get('md');
+					var str = '';
+					var ud = (data.ud)?data.ud:store.get('ud');
+					var sud = (data.sud)?data.sud:store.get('sud');
+					
+					(data.ts)?store.set('ts',data.ts):'';
+					(data.ud)?store.set('ud',data.ud):'';
+					(data.sud)?store.set('sud',data.sud):'';
+					(data.sd)?store.set('sd',data.sd):'';
+					(data.smd)?store.set('smd',data.smd):'';
+					(data.md)?store.set('md',data.md):'';
+					if(!md){ 
+						store.remove('ts');
+						store.remove('ud');
+						store.remove('sud');
+						store.remove('sd');
+						store.remove('smd');
+						store.remove('md');
+					}
+					for(var j = 0; j == 0 && md && j < md.length; j++){
+						str += '<dl mid="' + md[j].mid + '">';
+						str += '<dt>'+ md[j].n +'：</dt>';
+						var gd = md[j].gd;
+						for(var i = gd.length-1; i >= 0; i--){
+							var rel_n = '';
+							var week_str = getWeekMonthYear(new Date((md[0].b).replace(/-/g,'/')),new Date((gd[i].rd).replace(/-/g,'/')));
+							if( ud.uid == gd[i].ouid ){
+								rel_n = (ud.sex == 0)?'妈妈':'爸爸';
+							}else if(sud.uid == gd[i].ouid){
+								rel_n = (sud.sex == 0)?'妈妈':'爸爸';
+							}
+							str += 	'<dd gid="' + gd[i].gid + '" rd="'+ gd[i].rd +'" h="'+ ((gd[i].h != null)?gd[i].h:'') +'" w="'+ ((gd[i].w != null)?gd[i].w:'') +'" hz="'+ ((gd[i].hz != null)?gd[i].hz:'') +'">'
+							str += 	'<div>'
+							str += 		'<h3>'
+							str += 			'<span>'+week_str+'</span>'
+							str += 			'<span>' + rel_n + '记录</span>'
+							str += 			'<span>' + gd[i].rd + '</span>'
+							str += 		'</h3>'
+							str += 		'<p>'
+							str += 			'<span>'
+							str += 				'身长'
+							str += 				'<i>' + ((gd[i].h != null)?gd[i].h:'0') + 'cm</i>';
+							str += 			'</span>'
+							str += 			'<span>'
+							str += 				'体重'
+							str += 				'<i>' + ((gd[i].w != null)?gd[i].w:'0') + 'kg</i>';
+							str += 			'</span>'
+							str += 			'<span>'
+							str += 				'头围'
+							str += 				'<i>' + ((gd[i].hz != null)?gd[i].hz:'0') + 'cm</i>';
+							str += 			'</span>'
+							str += 		'</p>'
+							str += 	'</div>'
+							str += '</dd>'
+						}
+						str += '</dl>';
+					}
+					$('.data-manage').html(str);
+					$('.data-manage dl dd').each(function(){
+						var obj = $(this);
+						obj.on('click',function(){
+							window.location.href = add_growth_index_http + '?mid=' + md[0].mid + '&name=' + encodeURIComponent(md[0].n)
+																		 + '&sex=' + md[0].sex + '&rd=' + encodeURIComponent(obj.attr('rd'))
+																		 + '&gid=' + obj.attr('gid') + '&h=' + obj.attr('h')
+																		 + '&w=' + obj.attr('w') + '&hz=' + obj.attr('hz');
+						});
+					});
+				}else{
+					$('.data-manage').html('返回信息出错！');
+				}
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+	}
+	</script>
+	<script type="text/javascript" src="/website/javascripts/pingc/pingce.js?v=7726"></script>
+	<script type="text/javascript" src="/website/javascripts/libs/log.js"></script>
+</html>

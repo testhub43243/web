@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			<% if(para.hospital_name){ %>
+			<%- para.hospital_name %>&nbsp;-&nbsp;
+			<%- para.ward_name %>
+			<% } %>
+		</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+	</head>
+
+	<body>
+		<script>
+			var winHeight = document.body.clientHeight;
+			var Html = document.getElementsByTagName('html');
+			Html[0].style.fontSize = winHeight / 6.4 + 'px';
+			var hospital_check_statistics_http = '<%- hospital_check_statistics_http %>';
+			var hospital_id = '<%- para.hospital_id %>';
+			var ward_id = '<%- para.ward_id %>';
+			var openid = '<%- para.openid %>';
+			var hospital_name = '<%- para.hospital_name %>';
+			var ward_name = '<%- para.ward_name %>';
+		</script>
+		<!-- 新start -->
+		<div class="top click_chu">
+			<a href="#" class="top-left return_uncheckout"></a>
+			<b><%- formatDate(para.start_date,"M-D")%>~<%- formatDate(para.end_date,"M-D")%>入院 且未登记出院（<%- total %>）</b>
+			<span>出</span>
+		</div>
+
+		<div class="ChuYuanMingXi-cen JinRiRuYuan outhos">
+			<% for(var i = 0; i < list.length; i++){ %>
+			<span>
+            <em>
+            	<% if(list[i].member_birthday != null && list[i].member_birthday != ''){ %>
+            	<div class="chs">
+						<input type="checkbox" name="" id="<%- list[i].patient_identify %><%- i%>" value="<%- list[i].temp_leads_id%>" <% if(list[i].member_birthday == null || list[i].member_birthday == ''){ %>disabled<% } %>/>
+						<label for="<%- list[i].patient_identify %><%- i%>" <% if(list[i].member_birthday == null || list[i].member_birthday == ''){ %>class="disabled"<% } %>></label>
+					</div>
+				<% } %>
+                <div class="c-name"><b><%- list[i].mom_name %></b><i><%- list[i].patient_identify %></i></div>
+                <div class="r-time">年龄：<%- list[i].mom_age %><i></i>预产期：<%- formatDate(list[i].due_date,'M-D') %></div>
+            </em>
+            <em>
+                <div class="chanfu-jiashu">
+                	<p><%- list[i].mom_tel %></p>
+                	<p>
+                		<% if( list[i].member_sex != null && list[i].member_sex.length > 0){ %>
+	                		<%var sexarr=list[i].member_sex.split(',')%>
+	                		<% if(sexarr.length == 1){ %>
+	                			<%if(sexarr[0]==1){%>
+	                				<img src="/website/images/weixin/baby-boy.png" alt="" class='chuyuan-baby'/>
+	                			<%}else{%>
+	                				<img src="/website/images/weixin/baby-girl.png" alt="" class='chuyuan-baby'/>               			
+	                			<%}%>
+                			<% }else if(sexarr.length == 2 && (sexarr[0] ^ sexarr[1] == 1) ){ %>
+                				<img src="/website/images/weixin/baby-boy.png" alt="" class='chuyuan-baby'/>
+                				<img src="/website/images/weixin/baby-girl.png" alt="" class='chuyuan-baby'/>
+                			<% }else if(sexarr.length == 2 && (sexarr[0] ^ sexarr[1] == 0) && sexarr[0] == 1){ %>
+                				<img src="/website/images/weixin/baby-boy.png" alt="" class='chuyuan-baby'/>
+                				<img src="/website/images/weixin/baby-boy.png" alt="" class='chuyuan-baby'/>
+                			<% }else if(sexarr.length == 2 && (sexarr[0] ^ sexarr[1] == 0) && sexarr[0] == 0){ %>
+                				<img src="/website/images/weixin/baby-girl.png" alt="" class='chuyuan-baby'/>
+                				<img src="/website/images/weixin/baby-girl.png" alt="" class='chuyuan-baby'/>
+                		<% }} %>
+                		<i><% if(list[i].member_birthday != null){ %><%- formatDate(list[i].member_birthday,'M-D')%><% } %></i>
+                	</p>
+                </div>
+            </em>
+        </span>
+			<% } %>
+		</div>
+
+		<!--<div class="foot-as">
+        <a href="#">数据统计</a>
+    </div>-->
+		<!-- end -->
+		<script src="/website/javascripts/zepto.min.js"></script>
+		<script src="/website/javascripts/weixin/ind.js"></script>
+		<script>
+			//未出院详情-> 未出院统计
+			$('.return_uncheckout').on('click', function() {
+				window.location.href = hospital_check_statistics_http + '?ward_id=' + ward_id +
+					'&hospital_id=' + hospital_id +
+					'&type=3' +
+					'&openid=' + openid +
+					'&hospital_name=' + hospital_name +
+					'&ward_name=' + ward_name;
+			});
+			var batch_add_discharge_http = "<%- batch_add_discharge_http%>";
+			var openid = '<%- openid%>';
+		</script>
+	</body>
+
+</html>

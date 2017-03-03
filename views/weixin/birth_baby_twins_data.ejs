@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新生儿发育评测</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body style="background:#fafbfd;">
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var tmp_leads_id = '<%- tmp_leads_id %>';
+	var member_sex = '<%- member_sex %>';
+	var member_birthday = '<%- member_birthday %>';
+	var openid = '<%- openid %>';
+	var deliver_type_id = '<%- deliver_type_id %>';
+	var deliver_question_ids = '<%- deliver_question_ids %>';
+	var add_hospital_leads_member_http = '<%- add_hospital_leads_member_http %>';
+	var get_baby_evaluation_http = '<%- get_baby_evaluation_http %>';
+</script>
+<!-- start -->
+    <div class="baby-shuangtai-top"></div>
+    <div class="baby-bt baby-shuju"><img src="/website/images/weixin/juanchi.png">身长</div>
+    <div class="baby-xuanze">
+        <div class="baby-bsday baby-tizhong baby-shuangwa">
+        	<input type="number" maxlength="2" placeholder="出生身长" class="yihaoshengao">
+        	<div class="bc">厘米</div>
+        	<i>
+        		<% if( member.length == 2 ){ %>
+	        		<% if( member[0].member_sex ^ member[1].member_sex == 1 ){ %>
+	        		男宝
+	        	   <% }else if( member[0].member_sex ^ member[1].member_sex == 0 ){ %>
+	        	   		<% if( member[0].member_sex == 1 ){ %>
+	        	   			哥哥
+	        	   		<% }else if( member[0].member_sex == 0){ %>
+	        	   			姐姐	
+	        	   		<% } %>
+	        	   <% } %>
+	        	<% } %>
+        	</i>
+        </div>
+        <div class="baby-bsday baby-tizhong baby-shuangwa">
+        	<input type="number" maxlength="2" placeholder="出生身长" class="erhaoshengao">
+        	<div class="bc">厘米</div>
+        	<i>
+        		<% if(member.length == 2 ){ %>
+        			<% if( member[0].member_sex ^ member[1].member_sex == 1 ){ %>
+	        		女宝
+	        	   <% }else if( member[0].member_sex ^ member[1].member_sex == 0 ){ %>
+	        	   		<% if( member[0].member_sex == 1 ){ %>
+	        	   			弟弟
+	        	   		<% }else if( member[0].member_sex == 0){ %>
+	        	   			妹妹	
+	        	   		<% } %>
+	        	   <% } %>
+        		<% } %>
+        	</i>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="baby-bt baby-shuju"><img src="/website/images/weixin/tizhongqi.png">体重</div>
+    <div class="zhongliang-shuangbao">
+        <div class="baby-bsday baby-tizhong baby-shuangwa">
+        	<input type="tel" maxlength="4" placeholder="出生体重" class="yihaotizhong">
+        	<div class="bc">克</div>
+        	<i>
+        		<% if(member.length == 2 ){ %>
+        			<% if( member[0].member_sex ^ member[1].member_sex == 1 ){ %>
+	        		男宝
+	        	   <% }else if( member[0].member_sex ^ member[1].member_sex == 0 ){ %>
+	        	   		<% if( member[0].member_sex == 1 ){ %>
+	        	   			哥哥
+	        	   		<% }else if( member[0].member_sex == 0){ %>
+	        	   			姐姐	
+	        	   		<% } %>
+	        	   <% } %>
+        		<% } %>
+        	</i>
+        </div>
+        <div class="baby-bsday baby-tizhong baby-shuangwa">
+        	<input type="tel" maxlength="4" placeholder="出生体重" class="erhaotizhong">
+        	<div class="bc">克</div>
+        	<i>
+        		<% if(member.length == 2 ){ %>
+        			<% if( member[0].member_sex ^ member[1].member_sex == 1 ){ %>
+	        		女宝
+	        	    <% }else if( member[0].member_sex ^ member[1].member_sex == 0 ){ %>
+	        	   		<% if( member[0].member_sex == 1 ){ %>
+	        	   			弟弟
+	        	   		<% }else if( member[0].member_sex == 0){ %>
+	        	   			妹妹	
+	        	   		<% } %>
+	        	    <% } %>
+        		<% } %>
+        	</i>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="baby-chusheng-tishi">
+        如果您不知道宝宝出生时的身长体重，请向护士了解后回到此页面录入。通过宝宝的身长体重数据评测，可以及时掌握宝宝发育情况，科学指导喂养。
+    </div>
+    <div class="zhuce baogao-dengji"><a href="javascript:;" class="chakanfayupingcebaogaoshuangbao">查看发育测评报告</a></div>
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

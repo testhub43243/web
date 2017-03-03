@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			<% if(hospital_name){ %>
+			<%- hospital_name %>&nbsp;-&nbsp;
+			<%- ward_name %>
+			<% } %>
+		</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+	</head>
+
+	<body style="background:#fff;">
+		<script>
+			var winHeight = document.body.clientHeight;
+			var Html = document.getElementsByTagName('html');
+			Html[0].style.fontSize = winHeight / 6.4 + 'px';
+			var openid = '<%- openid %>';
+			var tmp_leads_id = '<%- tmp_leads_id %>';
+			var add_discharge_http = '<%- add_discharge_http %>';
+			var weixin_log_http = '<%- weixin_log_http %>';
+			var entry = '';
+			var apply_trial = '<%- apply_trial %>';
+		</script>
+		<!-- start -->
+		<div class="baogaoye2-top"></div>
+		<div class="baogao-chuyuan">
+			<div class="one-input">
+				<b>出院日期</b>
+				<span>
+                <input type="text" placeholder="请输入出院日期" class="chuyuanriqidengji" id="date" />
+            </span>
+			</div>
+		</div>
+		<div class="noout">
+			<div class="chs">
+				<input type="checkbox" name="" id="baby_discharge" value="1" />
+				<label for="baby_discharge">新生儿未随母出院，已转儿科或其他医院</label>
+			</div>
+			<% if(apply_trial != 1){ %>
+			<div class="chs want-tiyan">
+				<input type="checkbox" name="" id="want-tiyan" value="1" />
+				<label for="want-tiyan">免费体验院后护理私人医生服务</label>
+				<a href="<%- to_doc_service_url %>">查看详情</a>
+			</div>
+			<% } %>
+		</div>
+		<div class="zhuce baogao-dengji">
+			<a href="javascript:;" class="tijiaodengjixinxi" id="tijiaoouthosdate">查看出院指南</a>
+		</div>
+
+		<!-- end -->
+		<!--<script src="/website/javascripts/jquery-1.11.0.js"></script>-->
+		<script src="/website/javascripts/zepto.min.js"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js"></script>
+		<script src="/website/javascripts/weixin/log.js"></script>
+		<script src="/website/javascripts/weixin/ind.js"></script>
+		<script>
+			$(function() {
+				var min_date = new Date(),
+					max_date = new Date();
+				min_date.setMonth(min_date.getMonth() - 1, 1);
+				max_date.setTime(max_date.getTime() + 24 * 3600 * 1000);
+				$('#date').mobiscroll().date({
+					theme: 'android-holo-light',
+					lang: 'zh',
+					display: 'modal', //显示方式
+					mode: 'scroller',
+					controls: ['calendar'],
+					headerText: '出院日期',
+					dateFormat: 'yyyy-mm-dd',
+					setText: '确定',
+					cancelText: '取消',
+					dayText: '',
+					monthText: '',
+					minWidth: 65,
+					dateOrder: 'yyyymmdd',
+					minDate: min_date,
+					maxDate: max_date
+				});
+			});
+		</script>
+		
+	</body>
+
+</html>

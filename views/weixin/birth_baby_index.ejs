@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新生儿发育评测</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+	</head>
+
+	<body style="background:#fafbfd;">
+		<script>
+			var winHeight = document.body.clientHeight;
+			var Html = document.getElementsByTagName('html');
+			Html[0].style.fontSize = winHeight / 6.4 + 'px';
+			var tmp_leads_id = '<%- tmp_leads_id %>';
+			var openid = '<%- openid %>';
+			var birth_baby_data_http = '<%- birth_baby_data_http %>';
+			var birth_baby_twins_data_http = '<%- birth_baby_twins_data_http %>';
+		</script>
+		<!-- start -->
+		<div class="baby-xuanze-top"></div>
+		<div class="baby-bt"><img src="/website/images/weixin/one-1.png">我家刚出生的宝宝是</div>
+		<div class="baby-xuanze">
+			<div class="baby-baby">
+				<span>
+               		<i class="active" s="1">男宝</i><i s="0">女宝</i><i s="2">双胞胎</i>
+            	</span>
+				<em class="none">
+                <i class="active" s="2"><img src="/website/images/weixin/one-s1.png"><b>龙凤胎</b></i>
+                <i s="1"><img src="/website/images/weixin/one-s2.png"><b>兄弟</b></i>
+                <i s="0"><img src="/website/images/weixin/one-s3.png"><b>姐妹</b></i>
+            </em>
+			</div>
+		</div>
+		<div class="baby-bt"><img src="/website/images/weixin/one-2.png">宝宝生日是</div>
+		<div class="baby-xuanze">
+			<div class="baby-bsday birthday">
+				<input type="text" placeholder="请输入宝宝生日" id="date">
+			</div>
+		</div>
+		<div class="baby-bt"><img src="/website/images/weixin/one-3.png">分娩方式</div>
+		<div class="fenmian-xuanze clear">
+			<div class="fenmian ziran">
+				自然分娩
+			</div>
+			<div class="fenmian pougong">
+				剖宫产
+			</div>
+			<div class="clear"></div>
+			<div class="xuanze">
+				<p>如存在以下情况，请如实勾选，以便医生产后随访，指导产后恢复。</p>
+				<div class="ziran">
+					<div class="chs">
+						<input type="checkbox" name="" id="chuxue" value="1" />
+						<label for="chuxue">产后大出血</label>
+					</div>
+					<div class="chs">
+						<input type="checkbox" name="" id="zhumian" value="2" />
+						<label for="zhumian">产钳助娩</label>
+					</div>
+					<div class="chs">
+						<input type="checkbox" name="" id="ceqie" value="3" />
+						<label for="ceqie">会阴侧切</label>
+					</div>
+					<div class="chs">
+						<input type="checkbox" name="" id="silie" value="4" />
+						<label for="silie">会阴撕裂</label>
+					</div>
+				</div>
+                <div class="pougong">
+                	<div class="chs">
+						<input type="checkbox" name="" id="pouchuxue" value="1" />
+						<label for="pouchuxue">产后大出血</label>
+					</div>
+                </div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="zhuce baogao-dengji">
+			<a href="javascript:;" class="tijiaodengjixinxi_baby_index">下一步</a>
+		</div>
+
+		<!--<div class="riqi-t">
+        <span>
+            <em>
+                <div class="chusheng-riqi">出生日期</div>
+                <div class="chushengcen-riqi">民之所望，施政所向。李克强总理在今年的政府工作报告中提出，推动简政放权、放管结合、优化服务改革向纵深发展。以敬民之心，行简政之道。今年以来，李克强总理对简政放权、放管结合、优化服务改革提了哪些要求？国务院客户端为你梳理。</div>
+                <div class="queding-riqi"><a href="#">确定</a><a href="#" class="quxiao-t">取消</a></div>
+            </em>
+        </span>
+    </div>-->
+
+		<!-- 日期选择 -->
+		<!--<div class="riqi none">
+        <span>
+            <em>
+                <div class="riqi-bt">出生日期</div><div class="yue-ri"><i>月</i><i>日</i></div>
+                <div class="riqi-xuanze">
+                    <div class="riqi-span"><div class="ri-z"></div></div>
+                    <div class="riqi-span"><div class="ri-z"></div></div>
+                    <div class="riqi-span"><div class="ri-z"></div></div>
+                </div>
+
+                <div class="queding-riqi">
+                    <a href="#" class="tianjia">确定</a>
+                    <a href="#" class="quxiao">取消</a>
+                </div>
+            </em>
+        </span>
+    </div>-->
+		<div class="riqi-k">
+			<i>-1</i>
+			<!-- 1:30天 必须是整数，往前，当前日期为0 -->
+			<i>0</i>
+			<!-- 1:30天 必须是整数，往后，当前日期为0 -->
+		</div>
+		<!-- end -->
+		<!--<script src="/website/javascripts/jquery-1.11.0.js"></script>-->
+		<script src="/website/javascripts/zepto.min.js"></script>
+		<script src="/website/javascripts/weixin/ind.js"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js"></script>
+		<script>
+			$(function() {
+				var min_date = new Date(),
+					max_date = new Date();
+				min_date.setMonth(min_date.getMonth() - 1);
+				$('#date').mobiscroll().date({
+					theme: 'android-holo-light',
+					lang: 'zh',
+					display: 'modal', //显示方式
+					mode: 'scroller',
+					controls: ['calendar'],
+					headerText: '出生日期',
+					dateFormat: 'yyyy-mm-dd',
+					setText: '确定',
+					cancelText: '取消',
+					minWidth: 65,
+					dayText: '',
+					monthText: '',
+					yearText: '',
+					dateOrder: 'yyyymmdd',
+					minDate: min_date,
+					maxDate: max_date
+				});
+				//          if( m != 0){
+				//          	var opt = {
+				//	            	theme: 'android-holo-light',
+				//	                lang: 'zh',
+				//	                display: 'modal', //显示方式
+				//	                mode: 'scroller',
+				//	                controls: ['calendar'],
+				//	                dateFormat: 'mm-dd',
+				//	                setText: '确定', 
+				//	                cancelText: '取消',
+				//	                headerText: '出生日期',
+				//	                dayText: '', 
+				//	                monthText: '',
+				//	                dateOrder: 'mmdd',
+				//	                minDate: new Date(y, m-1, 1),
+				//	                maxDate: d
+				//             };
+				//             $('#date').mobiscroll().date( opt ).scroller( opt );
+				//          }else{
+				//          	var wheels = [[
+				//					    {
+				//					        keys: [0, 1],
+				//					        values: ["12", "01"]
+				//					    },
+				//					    {
+				//					        keys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+				//					        values: [ '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+				//					    }
+				//				  	]];
+				//          	var opt = {
+				//          		theme: 'android-holo-light',
+				//  			  	lang: 'zh',
+				//				  	display: 'modal', //显示方式
+				//				  	mode: 'scroller',
+				//				  	setText: '确定', 
+				//	                cancelText: '取消',
+				//	                headerText: '出生日期',
+				//				  	wheels:wheels,
+				//				  	onInit: function (inst) {
+				//				  	},
+				//				  	onSelect: function (valueText, inst) {
+				//				  		console.log( valueText );
+				//				  		var arr = [];
+				//				  		if( valueText.indexOf('-') != -1){
+				//				  			arr = valueText.split('-');console.log( arr );
+				//				  			if( arr.length == 2){
+				//				  				inst.setArrayVal([parseInt(arr[0]), parseInt(arr[1])-1]);
+				//				  			}else if( arr.length == 3){
+				//				  				inst.setArrayVal([0, parseInt(arr[2])-1]);
+				//				  			}
+				//				  		}
+				//  				},
+				//  				onShow: function (html, valueText, inst) {
+				//  				},
+				//  				onValueTap: function (item, inst) {
+				//  				},
+				//				  	onBeforeShow: function (inst) {
+				//				  		if( $('#date').val() == ''){
+				//				  			inst.setArrayVal([1, t-1]);
+				//				  		}
+				//				  	},
+				//				  	onChange: function (valueText, inst) {
+				//  					console.log( valueText);
+				//  					if( valueText.indexOf('-') != -1){
+				//  						var arrT = valueText.split('-');
+				//  						if( arrT.length == 2 ){
+				//  							if( parseInt(arrT[1]) > t){
+				//									inst.setVal( arrT[0] + '-' + arrT[1] );
+				//									inst.setArrayVal([1, t-1]);
+				//  							}
+				//  						}
+				//  					}
+				//				  	},
+				//				  	onPosition: function (html, windowWidth, windowHeight, inst) {
+				////				  		console.log( html );console.log('w:' + windowWidth + ' h:' + windowHeight);
+				//  				},
+				//				  	formatValue: function (data) {
+				//				  		var str = '';
+				//				  		if( data.length >= 2){
+				//				  			if( data[0] === '0'){
+				//						    	str = (y-1) + '-' + 12 + '-' + wheels[0][1].values[data[1]];
+				//						    }else if( data[0] === '1'){
+				//						    	str = '01' + '-' + wheels[0][1].values[data[1]];
+				//						    }
+				//				  		}
+				//					    return str;
+				//					}
+				//          	};
+				//          	$('#date').mobiscroll().scroller( opt );
+				//        }
+			});
+		</script>
+	</body>
+
+</html>

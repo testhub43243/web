@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><% if(hospital_name){ %><%- hospital_name %>&nbsp;-&nbsp;<%- ward_name %><% } %></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body style="background:#f1f3f6">
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var openid = '<%- openid %>';
+	var hospital_name = '<%- hospital_name %>';
+	var ward_name = '<%- ward_name %>';
+	var check_mom_exist_http = '<%- check_mom_exist_http %>';
+	var save_user_info_http = '<%- save_user_info_http %>';
+	var add_leads_weixin_rel_http = '<%- add_leads_weixin_rel_http %>';
+</script>
+<!-- start -->
+    <div class="ruyuandengji-top"></div>
+    <div class="ruyuandengji-cen">
+        <div class="fu-mu">
+            <i><span class="active" s="2">我是待产妈妈</span></i>
+            <i><span s="1">我是准爸爸</span></i>
+        </div>
+        <div class="baby-bsday baby-tizhong"><input type="text" placeholder="产妇姓名" class="chanfuxingming"></div>
+        <div class="baby-bsday baby-tizhong"><input type="text" placeholder="<%- pin %>" class="danganhao"></div>
+        <div class="baby-dangan-t">*&nbsp;<%- pino %></div>
+    </div>
+    <div class="zhuce xiayibu"><a href="javascript:;" class="chanfuxiayibu">下一步</a></div>
+
+      
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

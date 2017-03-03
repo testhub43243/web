@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<title>
+			<%- pt %>_专家咨询_小鲤鱼育儿_母婴私人医生</title>
+	</head>
+
+	<body>
+		<div class="top">
+			<p>
+				<%- pt %>
+			</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+			<input type="hidden" id="in_title" value="<%- pt %>" />
+		</div>
+		<div class="toppic">
+			<div class="bg">
+				<img src="/website/images/fuwu/peo.png" alt="" />
+				<div class="own">
+					<ul>
+						<% for(var i = 0; i < ppd.length; i++) {%>
+						<li>
+							<%- ppd[i] %>
+						</li>
+						<% } %>
+						<!--<li>疹子是湿疹吗？有30多种可能！</li>
+						<li>黄疸持续不退，影响成长发育怎么办？</li>-->
+					</ul>
+				</div>
+				<img src="/website/images/fuwu/pen.png" alt="" />
+			</div>
+			<% for(var j = 0; j < pd.length; j++){ %>
+			<div class="price">
+				<h3><%- sd %></h3>
+				<p class="onsale">￥
+					<%- parseInt(pd[0].pp) %>.<small><%- (pd[0].pp).substr((pd[0].pp).indexOf('.')+1) %></small>
+					<% if(pd[0].osc){ %><span><%- pd[0].osc %></span>
+					<% } %>
+				</p>
+				<p>原价:<del>￥<%- parseInt(pd[0].plp) %>.00</del></p>
+				<input type="hidden" name="pk" id="in_product_key" value="<%- pd[0].pk %>" />
+				<input type="hidden" name="pid" id="in_product_id" value="<%- pd[0].pid %>" />
+			</div>
+			<% } %>
+		</div>
+		<!--服务承诺-->
+		<div class="promise">
+			<div class="title">
+				<img src="/website/images/fuwu/pro.png" alt="" />
+				<span>服务承诺</span>
+			</div>
+			<div class="con">
+				<img src="/website/images/fuwu/clock.png" alt="" />
+				<span>当日通话</span>
+				<img src="/website/images/fuwu/doc.png" alt="" />
+				<span>对症专家</span>
+				<img src="/website/images/fuwu/money.png" alt="" />
+				<span>无条件退款</span>
+			</div>
+		</div>
+		<div class="sale">
+			<!--销售页导航-->
+			<ul class="nav">
+				<li class="on" t="1">
+					<a href="javascript:void(0);">相关咨询</a>
+				</li>
+				<% if( sdl == 1){ %>
+				<li t="2">
+					<a href="javascript:void(0);">专家团队</a>
+				</li>
+				<% } %>
+				<li t="3">
+					<a href="javascript:void(0);">服务说明</a>
+				</li>
+			</ul>
+			<div class="product">
+				<!--相关咨询-->
+				<div class="section">
+
+				</div>
+				<!--专家团队-->
+				<% if( sdl == 1){ %>
+				<div class="doctorteam">
+					<ul class="doctorList">
+						<% for(var j = 0;j < dl.length; j++){ %>
+						<li>
+							<img src="<%- dl[j].diu %>" alt="医师照片" onerror="not_find_img();" d_url="<%- ddiu %>">
+							<div class="dIntro">
+								<h3><span class="dName"><%- dl[j].dn %></span><span class="dPosition"><%- dl[j].tn %></span></h3>
+								<h5><span class="hospital"><%- dl[j].hn %></span><span class="dSection"><%- dl[j].den %></span></h5>
+							</div>
+						</li>
+						<% } %>
+					</ul>
+					<% if( m == 1 ){ %>
+					<div id="next_page" pno="1">
+						<div class="btn">更多医生</div>
+					</div>
+					<% } %>
+				</div>
+				<% } %>
+				<!--服务说明-->
+				<div class="service-guide">
+					<% for(var k = 0; k < pd.length; k++){ %>
+					<%if(pd[k].pt == 1){%>
+					<div class="srp3">
+						<img src="/website/images/fuwu/step.png">
+						<ul class="content">
+							<li>点击屏幕下方的“立即预约咨询”填写您的联系电话并完成支付。</li>
+							<li class="splitLine"></li>
+							<li>健康顾问会在30分钟内联系您，详细了解您要咨询的问题（21:00之后付费将在次日9:30前联系您）。</li>
+							<li class="splitLine"></li>
+							<li>健康顾问为您安排对症擅长、经验丰富的全科医生为您服务，并预约电话咨询时间。同时会提前把您要咨询的问题详情转给全科医生团队。</li>
+							<li class="splitLine"></li>
+							<li>全科医生将在约定的时间拨通您的电话，这样您就可以直接进行电话沟通咨询了。如遇复杂问题，全科医生会根据病情需求，帮您对接三甲医院专科医生。</li>
+						</ul>
+					</div>
+					<div class="srpc">
+						<div class="cInfo">
+							<div class="content">联系健康顾问</div>
+						</div>
+						<div class="cnum">
+							<a href="tel:4000-900-666">
+								<div class="num">4000-900-666</div>
+								<div class="time">09:00-21:00</div>
+							</a>
+						</div>
+					</div>
+					<div class="srp4">
+						<div class="title"><img src="/website/images/fuwu/qa.png" alt=""><span>常见问题：</span></div>
+						<ul class="qaList">
+							<!--First-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我的问题都会安排给什么样的专家来解答？</p>
+									</div>
+									<div class="splitLine"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>亚健康、常见疾病类问题，由全科医生团队帮您解决，我们会按照您的问题类型安排处理该问题经验最丰富的专家负责。如遇复杂问题，则会根据病情需求，帮您对接三甲医院专科医生。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>在哪里可以看到我的订单，并能够上传照片？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在我们频道首页右上角，可见“我的服务”链接，点击进去即可看到您购买的服务，并随时了解进展情况。<br>当您支付完成，且健康顾问与您电话沟通后，您就能够在“我的服务”页面看到这次咨询的进展情况，同时也可上传照片。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>怎么支付？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在下单过程中您将看到支付界面，您可以选择支付宝付款。<br>目前暂时不支持其他支付方式。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我交完钱了能退吗？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>我们承诺无条件退款，您有需要可以直接联系健康顾问。</p>
+									</div>
+								</div>
+							</li>
+
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我要是对咨询结果不满意怎么办？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在您与医生通话完成后30分钟内，健康顾问会再次与您联系，您可以把您的意见反馈给健康顾问。如果需要，健康顾问可以帮您重新安排同级别对症医生咨询。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>在咨询中能不能给我开药？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>通话咨询是为了听取医生客观、中立的建议，解答治愈过程中的困惑、避免治疗上走弯路、延误最佳治疗时机，正式诊断和开药都需要去医院面诊。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+						</ul>
+					</div>
+					<%}else{%>
+					<div class="srp3">
+						<img src="/website/images/fuwu/step.png">
+						<ul class="content">
+							<li>点击屏幕下方的“立即预约咨询”填写您的联系电话并完成支付。</li>
+							<li class="splitLine"></li>
+							<li>健康顾问会在30分钟内联系您，详细了解您要咨询的问题（21:00之后付费将在次日9:30前联系您）。</li>
+							<li class="splitLine"></li>
+							<li>健康顾问为您安排对症擅长、经验丰富的全科医生为您服务，并预约电话咨询时间。同时会提前把您要咨询的问题详情转给全科医生团队。</li>
+							<li class="splitLine"></li>
+							<li>健康顾问将在约定的时间拨通您的电话，并接入医生的电话，这样您就可以直接向医生咨询了。通话时间为10分钟，如需要面诊您还可以在电话中与医生预约就诊时间。</li>
+						</ul>
+					</div>
+					<div class="srpc">
+						<div class="cInfo">
+							<div class="content">联系健康顾问</div>
+						</div>
+						<div class="cnum">
+							<a href="tel:4000-900-666">
+								<div class="num">4000-900-666</div>
+								<div class="time">09:00-21:00</div>
+							</a>
+						</div>
+					</div>
+					<div class="srp4">
+						<div class="title"><img src="/website/images/fuwu/qa.png" alt=""><span>常见问题：</span></div>
+						<ul class="qaList">
+							<!--First-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>10分钟咨询时间是否太短，要是没有咨询完怎么办？</p>
+									</div>
+									<div class="splitLine"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在与医生通话前，健康顾问会向您详细了解您要咨询的问题，如有需要还会请您提交检查结果或症状照片，整理好后一并提交给医生。因此医生与您通话时可以直奔主题并给出具体的建议，这个时间会比平常在医院门诊更加宽裕。 如果您实在有更多的问题要问，可以与健康顾问沟通，再多购买一份服务，即可延长10分钟与医生的通话时间。
+										</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>怎么保证和我通话的医生都是医生本人？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>我们是与专家直接合作，可100%承诺与您通话都是专家本人。您可以通过任何渠道进行查询，也可以在面诊时直接向专家进行核实。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>在哪里可以看到我的订单，并能够上传照片？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在我们频道首页右上角，可见“我的服务”链接，点击进去即可看到您购买的服务，并随时了解进展情况。<br>当您支付完成，且健康顾问与您电话沟通后，您就能够在“我的服务”页面看到这次咨询的进展情况，同时也可上传照片。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>怎么支付？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在下单过程中您将看到支付界面，您可以选择支付宝付款。<br>如果您不方便支付，也可以在该页面把支付信息转发给您的亲友请他们协助支付。<br>当然您也可以选择银行汇款的方式，只是付款周期会长一些。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我交完钱了能退吗？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>我们承诺无条件退款，您有需要可以直接联系健康顾问。</p>
+									</div>
+								</div>
+							</li>
+
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我要是对咨询结果不满意怎么办？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>在您与医生通话完成后30分钟内，健康顾问会再次与您联系，您可以把您的意见反馈给健康顾问。如果需要，健康顾问可以帮您重新安排同级别对症医生咨询。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我能请医生帮我加号吗？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>我们不开展挂号业务，您可以与医生直接沟通，如果医生认为您的情况确实需要面诊，通常都会给予就诊方便。</p>
+									</div>
+								</div>
+							</li>
+
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>医生都是哪些医院的，级别够吗？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>我们选择医生的标准与程序是严格、认真的，为你服务的医生是：<br>✦ 富有爱心、有同情心，态度严谨、尊重患者及其隐私;<br>✦ 有良好的沟通能力，开放的心态，善于倾听患儿家长的感受、需求;<br>✦ 专业技术过硬，重视母婴健康教育的公立三甲医院级别的医生、护理专家。</p>
+									</div>
+								</div>
+							</li>
+
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>我想咨询某某主任，你们能帮我联系吗？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>如果您指定的是我们的签约医生，且病情与你指定医生的擅长吻合，健康顾问会优先安排你所指定的医生。</p>
+									</div>
+								</div>
+							</li>
+							<li class="splitLine2"></li>
+							<!--Second-->
+							<li>
+								<!--问答-->
+								<div class="qa">
+									<img class="qImg" src="/website/images/fuwu/q.png" alt="问">
+									<div class="questions">
+										<p>医生咨询中能不能给我开药？</p>
+									</div>
+									<div class="splitLine"></div>
+									<div class="clear"></div>
+									<img class="aImg" src="/website/images/fuwu/a.png" alt="答">
+									<div class="answers">
+										<p>通话咨询是为了听取医生客观、中立的建议，解答治愈过程中的困惑、避免治疗上走弯路、延误最佳治疗时机，正式诊断和开药都需要去医院面诊。</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<%}%>
+					<%}%>
+				</div>
+			</div>
+		</div>
+		<div class="salebtn">
+			<a href="javascript:;" class="yuyuezixun">立即预约咨询</a>
+		</div>
+
+		<script>
+			var symid = '';
+			var spid = '<%- para.spid %>';
+			var pk = '<% if(pd.length > 0){ %><%- pd[0].pk %><% } %>';
+			var get_related_orders_http = '<%- get_related_orders_http %>';
+			var get_related_doctors_http = '<%- get_related_doctors_http %>';
+			var new_order_http = '<%- new_order_http %>';
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+			var write_log_http = undefined;
+			var upload_http = '<%- upload_http %>';
+		</script>
+		<script type="text/javascript" src="/website/javascripts/fuwu/base.js"></script>
+	</body>
+
+</html>

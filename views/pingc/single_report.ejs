@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css?v=12281" />
+		<script type="text/javascript" src="/website/javascripts/jquery.min.js"></script>
+		<script type="text/javascript" src="/website/javascripts/store.min.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<title>小鲤鱼育儿生长发育评测</title>
+	</head>
+
+	<body>
+		<div class="top stop">
+			<p></p>
+			<a href="javascript:void(0);" class="click_back"></a>
+			<a href="javascript:void(0);" class="plus">
+				<img src="/website/images/pingc/addaction.png" alt="" />
+			</a>
+			<a href="javascript:void(0);" class="edit">
+				<img src="/website/images/pingc/edit.png" alt="" />
+			</a>
+		</div>
+		<div class="pingcenav" id="pingnav">
+			<ul>
+				<li data-type="weight" class="weight">
+					<a href="javascript:;">
+						<img src="/website/images/pingc/weight.png" alt="" class="an" />
+						<img src="/website/images/pingc/aweight.png" alt="" class="ac" />
+						<!--<input type="text" value="/website/images/pingc/aweight.png" style="display: none;" />-->
+						<span>
+							<p>体重</p>
+							<p>Weight</p>
+						</span>
+					</a>
+				</li>
+				<li data-type="height" class="height">
+					<a href="javascript:;">
+						<img src="/website/images/pingc/height.png" alt="" class="an" />
+						<img src="/website/images/pingc/aheight.png" alt="" class="ac" />
+						<!--<input type="text" value="/website/images/pingc/aheight.png" style="display: none;" />-->
+						<span>
+							<p>身高</p>
+							<p>Height</p>
+						</span>
+					</a>
+				</li>
+				<li data-type="headsize" class="headsize">
+					<a href="javascript:;">
+						<img src="/website/images/pingc/headsize.png" alt="" class="an" />
+						<img src="/website/images/pingc/aheadsize.png" alt="" class="ac" />
+						<!--<input type="text" value="/website/images/pingc/aheadsize.png" style="display: none;" />-->
+						<span>
+							<p>头围</p>
+							<p>Head C.</p>
+						</span>
+					</a>
+				</li>
+				<li data-type="bmi" class="bmi">
+					<a href="javascript:;">
+						<img src="/website/images/pingc/bmi.png" alt="" class="an" />
+						<img src="/website/images/pingc/abmi.png" alt="" class="ac" />
+						<!--<input type="text" value="/website/images/pingc/abmi.png" style="display: none;" />-->
+						<span>
+							<p>匀称性</p>
+							<p>BMI</p>
+						</span>
+					</a>
+			</ul>
+		</div>
+		</div>
+		<div class="maincontainer">
+			<div class="pingcetu">
+				<!--<img src="/website/images/pingc/circle.png" alt="" width="100%" height="100%" />-->
+				<div class="chartbox">
+					<div id="height"></div>
+					<div id="weight"></div>
+					<div id="headsize"></div>
+					<div id="bmi"></div>
+				</div>
+				<div class="read-queue" id='read-queue'>
+					<p>100个同龄同性别宝宝按测量指标由低到高排队，居中的80名处于常见范围。</p>
+					<br />
+					<p>警戒线：</p>
+					<p>第10名一下和第90名以上偏离常见范围，需要密切关注。</p>
+					<br />
+					<p>干预线：</p>
+					<p>低于第3名和高于第97名偏离常见范围较大，建议咨询专业医生进行干预。</p>
+				</div>
+				<p class='yaxis_title'>体重（千克）</p>
+				<p class="totalpingce">已有<span></span>宝宝测评</p>
+				<div id="gaodu" style="display:none;"></div>
+			</div>
+
+			<div class="circlejiedu">
+				<div class="titlename">
+					<h3>曲线解读</h3>
+					<div class="titleline"></div>
+					<span class='zaochan'>早产矫正</span>
+					<img src="/website/images/pingc/wenhao.png" alt="" class="pinask" id="pinask" />
+				</div>
+				<% if(ed != null){%>
+				<% if(ed.nd.it == 2){%>
+				<div class="nopingceday" style="display: block;">
+					<img src="/website/images/pingc/al.png" alt="" />
+					<span>以下为<b><%-ed.nd.tm%></b>天前评测，请补充新数据</span>
+				</div>
+				<%}else{%>
+				<div class="nopingceday" style="display: none;">
+					<img src="/website/images/pingc/al.png" alt="" />
+					<span>以下为<b><%-ed.nd.tm%></b>天前评测，请补充新数据</span>
+				</div>
+				<%}%>
+				<%}%>
+				<ul>
+					<% if(ed != null){%>
+					<li>
+						<h3>与同龄宝宝比</h3>
+						<span><%- ed.l.rm%></span>
+						<h5>
+							<span>百分位</span>
+							<img src="/website/images/pingc/wenhao.png" alt="" class="tongask" id="tongask" />
+						</h5>
+						<span><%- ed.l.pv%>%</span>
+						<p>
+							<%- ed.l.dm%>
+						</p>
+					</li>
+					<li>
+						<h3>与自己之前比</h3>
+						<span><%- ed.t.rm%></span>
+						<%if(ed.t.am){%>
+						<h5><%- ed.t.am%></h5>
+						<span><%- ed.t.av%>cm</span>
+						<%}%>
+						<p>
+							<%- ed.t.dm%>
+						</p>
+					</li>
+					<%}else{%>
+					<h5 class="no_ed">当前年龄段暂无合适参考数据</h5>
+					<p class="no_ed_msg">
+						<%- no_ed_msg%>
+					</p>
+					<%}%>
+				</ul>
+			</div>
+			<% if(ed != null){%><br />
+			<input type="text" value="<%-ed.l.pvd%>" id="pvd" style="display: none;"/>
+			<div class="baifenjiedu">
+				<div class="titlename">
+					<h3>百分位解读</h3>
+					<div class="titleline"></div>
+				</div>
+				<div class="baifen">
+					<div class="baifenpic">
+						<em>
+							<div class="baifenwei">
+							<!--<img src="images/baifenarr.png" alt="" />-->						
+							<span><%- ed.l.pv%>%</span>	
+						    </div>
+						</em>
+
+					</div>
+					<div class="baifenword">
+						<p>本次评测百分位数据参照</p>
+						<!--<p class="evarule">《世界卫生组织儿童生长发育标准（2006年版）》</p>-->
+						<p class="evarule">《世界卫生组织儿童生长发育标准（2006年版）》</p>
+					</div>
+				</div>
+			</div>
+			<div class="lianxi">
+				<div class="titlename">
+					<h3>连续纪录</h3>
+					<div class="titleline"></div>
+				</div>
+				<div class="nextce">
+					<h3><%- ed.nd.m%></h3>
+					<div class="memday">
+						<%if(ed.nd.it == 1){%>
+						<div class="jiluday">
+							<p class="jilu">
+								<%var dayarr = (ed.nd.d).split('-');%>
+								<% var month = (dayarr[1]<10)? dayarr[1].slice(1,2):dayarr[1];%>
+								<% var day = dayarr[2];%>
+								<span><%-month%>月</span>
+								<span><%-day%></span>
+							</p>
+						</div>
+						<%}else{%>
+						<div class="todayjilu">
+							<div class="cebg">
+								<p>妈妈，您都
+									<%- ed.nd.tm%>天没帮我测量了</p>
+							</div>
+							<img src="/website/images/pingc/celiang.png" alt="" class="celiang" />
+						</div>
+						<%}%>
+					</div>
+					<% var unit='';%>
+					<%switch(curtype) {
+			case "weight":
+				unit = "kg";
+				break;
+			case "height":
+				unit = "cm";
+				break;
+			case "head":
+				unit = "cm";
+				break;
+			default:
+				unit = "";
+				break;
+		}%>
+					<h5 class="dream">该日理想值：<span><%-ed.nd.min%><%-unit%>~<%-ed.nd.max%><%-unit%></span></h5>
+					<a href="javascript:;" class="addshu">添加数据</a>
+				</div>
+			</div>
+			<%}else{%>
+			<div class="baifenjiedu"></div>
+			<div class="lianxi"></div>
+			<%}%>
+			<div class="adver">
+				<a href="/fuwu/sale_page?spid=3">
+					<img src="/website/images/pingc/adver.png" alt="" />
+				</a>
+			</div>
+		</div>
+		<div class="pingnav">
+			<ul id="pingnav">
+				<li>
+					<a href="javascript:;" class='data-contr'>
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>数据管理</span>
+					</a>
+					<!--<ul class="menu">
+						<li class='data-contr'>
+							数据管理
+						</li>
+						<li class='data-add'>
+							添加数据
+						</li>
+					</ul>-->
+				</li>
+				<li class='my-service'>
+					<a href="javascript:;" class='data-add'>
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>添加数据</span>
+					</a>
+				</li>
+				<li class='read-report'>
+					<a href="/fuwu/sale_page?spid=3">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>报告解读</span>
+					</a>
+				</li>
+				<li class='ask-erke'>
+					<a href="/fuwu/service_index">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>问儿科医生</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--百分位解释-->
+		<div class="percent-read tanbox" id="read-queue">
+		</div>
+		<!--矫正解释-->
+		<div class='jiao-read tanbox'></div>
+		<!--弹窗-->
+		<div class="releadbox sin_relead">
+			<a href="javascript:;" class="whateval single"></a>
+			<a href="javascript:;" class="releadbtn">马上开始评测</a>
+		</div>
+		<!--灰遮罩-->
+		<div class="mask smask"></div>
+		<!--白色半透明遮罩-->
+		<div class="wmask"></div>
+	</body>
+	<script>
+		<% if(ed != null){%>
+		var pv = '<%- ed.l.pv%>';
+		<%}%>
+		var sk = '<%- sk%>';
+		var mid = '<%- para.mid%>';
+		var curtype = '<%- curtype%>';
+		var single_report_http = '<%- single_report_http%>'
+		var get_all_data_standard_http = '<%- get_all_data_standard_http%>';
+		var get_member_count_http = '<%- get_member_count_http%>';
+		var get_userinfo_http = '<%- get_userinfo_http%>';
+		var write_log_http = '<%- write_log_http %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		var get_babys_http = '<%- get_babys_http%>';
+		var verify_uk_sk_http = '<%- verify_uk_sk_http%>';
+	</script>
+	<script type="text/javascript" src="/website/javascripts/pingc/jquery.flot.min.js"></script>
+	<script type="text/javascript" src="/website/javascripts/moment.min.js"></script>
+	<script type="text/javascript" src="/website/javascripts/libs/common.js"></script>
+	<script type="text/javascript" src="/website/javascripts/pingc/pingce.js"></script>
+	<script type="text/javascript" src="/website/javascripts/pingc/eva_chart.js"></script>
+	<script>
+		$.ajax({
+			type: 'post',
+			url: get_member_count_http,
+			data: {},
+			success: function(data) {
+				console.log(data)
+				if(data.r == 0) {
+					$('.totalpingce span').html(data.mc);
+				}
+			},
+			error: function(e, msg) {
+				console.log(msg);
+			}
+		});
+		var mem_name, mid, sex, md, mem_tit;
+		var vr_flag = 1;
+		var uk;
+		uk = (uk) ? uk : getCookie('uk');
+		console.log(uk);
+		if(!uk) {
+			$('.pingnav').hide();
+			$('.maincontainer').css('padding-bottom', 0);
+		};
+		//  没有uk或uk与sk不同
+		$.ajax({
+			type: "post",
+			url: verify_uk_sk_http,
+			data: {
+				sk: sk
+			},
+			success: function(data) {
+				console.log(data);
+				var opt = {
+					domain: '.xiaoly.com',
+					path: '/',
+					expires: -1
+				};
+				if(data.r == 0) {
+					if(data.vr == 0) {
+						vr_flag = 0;
+						//$('.edit,.plus').css('display', 'none');
+						$('.addshu').html('我也要评测').attr('href', '/pingc/eva_report');
+						$('.pingnav').hide();
+						$('.maincontainer').css('padding-bottom', 0);
+						$('.nopingceday').hide();
+						$('.releadbtn').hide();
+						$.cookie('mid', null, opt);
+						$.cookie('rel', null, opt);
+					} else {
+						vr_flag = 1;
+						$('.edit,.plus').css('display', 'block');
+					};
+				} else {
+					vr_flag = 0;
+					//$('.edit,.plus').css('display', 'none');
+					$('.addshu').html('我也要评测').attr('href', '/pingc/eva_report');
+					$('.pingnav').hide();
+					$('.maincontainer').css('padding-bottom', 0);
+					$('.nopingceday').hide();
+					$('.releadbtn').hide();
+					var opt = {
+						domain: '.xiaoly.com',
+						path: '/',
+						expires: -1
+					};
+					$.cookie('mid', null, opt);
+					$.cookie('rel', null, opt);
+				}
+			},
+			error: function(err) {
+				console.log(err)
+			}
+		});
+		$.ajax({
+			type: 'post',
+			url: get_babys_http,
+			data: {
+				sk: sk
+			},
+			success: function(data) {
+				console.log(data);
+				if(data.r == 0) {
+					md = data.md[0];
+					drawFuc();
+					mem_name = (data.md[0].n) ? data.md[0].n : '';
+					mem_tit = mem_name + '发育评测';
+					$('title').html(mem_name + '的体格发育报告');
+					$('.top p').html(mem_tit);
+					mid = md.mid;
+					sex = md.sex;
+					rel = md.rel;
+					if(rel == 0) {
+						$('.pingnav').hide();
+						$('.maincontainer').css('padding-bottom', 0);
+					};
+					var opt = {
+						domain: '.xiaoly.com',
+						path: '/',
+						expires: 10 * 36.5 * 10
+					};
+					if(vr_flag == 1) {
+						$.cookie('mid', mid, opt);
+						$.cookie('rel', rel, opt);
+						if(data.md.length != 0) {
+							storeFunc(mid);
+						};
+					};
+					if(md.ga != 0 || md.ga_or_ed != 0) {
+						drawFuc();
+						var tai = md.ga;
+						tai == 0 ? tai = 280 : tai;
+						var birth_age = md.b;
+						if(md.gd.length != 0) {
+							var mea_day = md.gd[md.gd.length - 1].rd;
+							var nowdate = today();
+							console.log(nowdate);
+							var day_age = dayage(nowdate, zaochan(tai, birth_age));
+							var birth_cal = zaochan(tai, birth_age);
+							//		是否显示早产判断
+							if(tai <= 258) {
+								if(day_age <= 730) {
+									day_age = getWeekMonthYear(birth_cal);
+									$('.jiao-read').html('根据您录入的数据，' + mem_name + '属于早产，参考曲线及发育评测结果，将根据矫正月龄给出。宝宝当前矫正后年龄为' + day_age);
+								} else {
+									var birth = dateTran(birth_cal,730);
+									console.log(birth);
+									day_age = getWeekMonthYear(birth_age,birth);
+									$('.jiao-read').html(mem_name + '从' + day_age+'年龄开始，按照实际月龄给出参考曲线与评测结果');
+								};
+								$('.zaochan,.pinask').show();
+								$('.pinask').on('click', function() {				
+									$('.jiao-read').toggle();
+									$('.wmask').toggle();
+								});
+							};
+							var birth_eva = $('#pvd').val();
+							$('.evarule').html(evarule(curtype,md,birth_eva,standard));
+						};
+					};
+				};
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
+		//		跳转
+		$('.plus,.addshu,.addaction').on('click', function() {
+			window.location.href = './add_growth_index';
+		});
+		$('.edit').on('click', function() {
+			window.location.href = './get_babys_list';
+		});
+		$('.nopingceday').on('click', function() {
+			window.location.href = './add_growth_index';
+		});
+		$('.lianxi').on('click', '.todayjilu', function() {
+			window.location.href = './add_growth_index';
+		});
+		$('.data-contr').attr('href', './get_babys_list');
+		$('.data-add').attr('href', './add_growth_index');
+	</script>
+
+</html>
+<script>
+	window.onload = function() {
+		<% if(ed != null){%>
+		baifen(<%- ed.l.pv%>);
+		<%}else{%>
+		baifen(0);
+		<%}%>
+		//		console.log(getCookie('uk'))
+		//		if(!(getCookie('uk'))) {
+		//			$('.edit,.plus,.nopingceday').css('display', 'none');
+		//			$('.addshu').html('我也要评测').attr('href', '/pingc/eva_report');
+		//		};
+		if(write_log_http) {
+			var para = {};
+			para.referer = document.referrer;
+			para.location = window.location.href;
+			para.os = $.client.os;
+			para.browser = $.client.browser;
+			para.dr = '' + window.screen.width + '*' + window.screen.height;
+			$.ajax({
+				type: 'post',
+				url: write_log_http,
+				data: para,
+				success: function(data) {},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		};
+		var bh = $(document).height();
+		var th = $('.top').height();
+		var sh = bh - th;
+		$('.smask').css({
+			'height': sh,
+			'margin-top': th
+		});
+	};
+</script>

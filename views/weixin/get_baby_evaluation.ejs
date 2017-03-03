@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新生儿发育评测</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+	</head>
+	<body>
+		<script>
+			var winHeight = document.body.clientHeight;
+			var Html = document.getElementsByTagName('html');
+			Html[0].style.fontSize = winHeight / 6.4 + 'px';
+			var bind_phone_reg_http = '<%- bind_phone_reg_http %>';
+			var add_discharge_http = '<%- add_discharge_http %>';
+			var tmp_leads_id = '<%- tmp_leads_id %>';
+			var openid = '<%- para.openid %>';
+			var mobile = '<%- mobile %>';
+			var apply_experience_succ_http = '<%- apply_experience_succ_http %>';
+			var apply_trial = '<%- apply_trial %>';
+			var wx_tag_id = '<%- wx_tag_id %>';
+			var apply_trial_contract_http = '<%- apply_trial_contract_http %>';
+			var contract_start_date = '<%- contract_start_date %>';
+			var contract_end_date = '<%- contract_end_date %>';
+			var weixin_log_http = '<%- weixin_log_http %>';
+		</script>
+		<!-- start -->
+		<% for(var i = 0; i < member.length; i++){ %>
+		<div class="report-title">
+			<div class="baogao-bt">
+				<%- member[i].member_name %>
+				<%- member[i].growth_age %>测评报告</div>
+			<div class="baogao-zuzhi">《世界卫生组织最新全球标准》</div>
+		</div>
+		<!--<div class="baogao-banner">
+        <div class="baogao2-pingce">体格综合评分</div>
+        <span><em><%/*- member[i].fish_score */%></em>分</span>
+        <i><b style="width:<%/*- member[i].fish_score */%>%"></b><div class="zuobiao"><%/*- member[i].fish_score */%></div></i>
+    </div>-->
+		<div class="fayu-fenwei ff-color"><span></span><i>发育水平</i><i>百分位</i></div>
+		<div class="fayu-fenwei"><span>体重</span><i><%- member[i].weight_level %></i><i><%- member[i].weight_percent %></i></div>
+		<div class="fayu-fenwei"><span>身长</span><i><%- member[i].height_level %></i><i><%- member[i].height_percent %></i></div>
+		<div class="fayu-shuoming">
+			<%- member[i].overall_eva %>
+		</div>
+		<% } %>
+		<div class="red-report-bg">
+			<div class="red-box getredbox">
+				<a href="javascript:void(0)">
+					<img src="/website/images/weixin/getredbox.png" alt="" class="getredbtn">
+					<img src="/website/images/weixin/get.png" alt="" class="get" />
+				</a>
+			</div>
+		</div>
+		<% if( checkout_reg_time == null || checkout_reg_time == undefined || checkout_reg_time == ''){ %>
+		<div class="baogao-zban"></div>
+		<div class="one-input chuyuan-baogao">
+			<b>出院日期</b>
+			<span>
+            <input type="text" placeholder="请输入出院日期" id="date" class="chuyuanriqi">
+        </span>
+		</div>
+		<div class="noout">
+			<div class="chs">
+				<input type="checkbox" name="" id="baby_discharge" value="1" />
+				<label for="baby_discharge">新生儿未随母出院，已转儿科或其他医院</label>
+			</div>
+			<% if(apply_trial != 1){ %>
+			<div class="chs">
+				<input type="checkbox" name="apply_trial" id="want-tiyan" value="1" />
+				<label for="want-tiyan">免费体验院后护理私人医生服务</label>
+				<a href="<%- to_doc_service_url %>">查看详情</a>
+			</div>
+			<% } %>
+		</div>
+		<div class="zhuce achuyuan-baogao">
+			<a href="javascript:;" class="chakanchuyuanzhinan">查看出院指南</a>
+		</div>
+		<% } %>
+		<!-- end -->
+		<!--<script src="/website/javascripts/jquery-1.11.0.js"></script>-->
+		<script src="/website/javascripts/zepto.min.js"></script>
+		<script src="/website/javascripts/weixin/log.js"></script>
+		<script src="/website/javascripts/weixin/ind.js"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js"></script>
+		<script>
+			$(function() {
+				var min_date = new Date(),
+					max_date = new Date();
+				min_date.setMonth(min_date.getMonth() - 1, 1);
+				max_date.setTime(max_date.getTime() + 24 * 3600 * 1000);
+				$('#date').mobiscroll().date({
+					theme: 'android-holo-light',
+					lang: 'zh',
+					display: 'modal', //显示方式
+					mode: 'scroller',
+					controls: ['calendar'],
+					headerText: '出院日期',
+					dateFormat: 'yyyy-mm-dd',
+					setText: '确定',
+					cancelText: '取消',
+					dayText: '',
+					monthText: '',
+					minWidth: 65,
+					dateOrder: 'yyyymmdd',
+					minDate: min_date,
+					maxDate: max_date
+				});
+			});
+		</script>
+		
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手机验证</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body>
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var openid = '<%- openid %>';
+	var get_auth_code_http = '<%- get_auth_code_http %>';
+	var bind_user_http = '<%- bind_user_http %>';
+	var bind_phone_succ_http = '<%- bind_phone_succ_http %>';
+</script>
+<!-- start -->
+    <div class="bangdingshouji-top"></div>
+    <div class="one-input">
+        <b>您的手机</b>
+        <span>
+            <input type="number" placeholder="请输入手机号" class="shoujihao" value="<%- mobile %>">
+        </span>
+    </div>
+    <div class="one-input one-input-yz">
+        <b>验证码</b>
+        <span>
+            <a href="#">获取验证码</a>
+            <input type="number" placeholder="请输入验证码">
+        </span>
+    </div>
+    <div class="one-input">
+        <b>设置密码</b>
+        <span>
+            <input type="password" placeholder="请输入密码" class="shezhimima">
+        </span>
+    </div>
+    <div class="zhuce"><a href="javascript:;" class="zhucezhuce">注册</a></div>
+
+      
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

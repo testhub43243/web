@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>护士二维码</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body>
+<script>
+    var winHeight = document.body.clientHeight;
+    var Html = document.getElementsByTagName('html');
+    	Html[0].style.fontSize = winHeight / 6.4 + 'px';
+</script>
+<!-- start -->
+    <!--<div class="zhucechenggong-top"></div>-->
+    <div class="zhucechenggong-cen">
+        <img id="user_qr_code" src="<%- get_weixin_user_qr_code_http %>?openid=<%- openid %>" />
+    </div>
+    <!--<div class="zhuce zhucechenggong"><a href="">立即下载小鲤鱼app</a></div>-->
+
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+    <script>
+    	var winWidth = $(window).width();
+		$('#user_qr_code').width( winWidth * 0.8 );
+    </script>
+</body>
+</html>

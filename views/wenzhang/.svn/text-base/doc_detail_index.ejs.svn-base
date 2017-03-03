@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" manifest="/website/javascripts/pingc/doc_detail_index.manifest">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<title><%- dd.dt %>_专家观点_小鲤鱼育儿</title>
+		<link rel="stylesheet" href="/website/stylesheets/swiper.min.css?v=7625" />
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css?v=7669" />
+		<script type="text/javascript" src="/website/javascripts/zepto.min.js?v=7625"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.client.js"></script>
+		<script type="text/javascript">
+			var get_doc_read_num_http = '<%- get_doc_read_num_http %>';
+			var dk = '<%- para.dk %>';
+			var get_babys_list_http = '<%- get_babys_list_http %>';
+			var add_growth_index_http = '<%- add_growth_index_http %>';
+			var sale_page_http = '<%- sale_page_http %>';
+			var service_index_http = '<%- service_index_http %>';
+			var write_log_http = '<%- write_log_http %>';
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		</script>
+		
+		<script type="text/javascript" src="/website/javascripts/libs/log.js"></script>
+	</head>
+	<body style="background-color:#f2f4f7">
+		<div class="arttop">
+			<div>
+				<a href="javascript:;" class="click_back">
+					<img src="/website/images/pingc/artarr.png" alt="" />
+					<span>专家观点</span>
+				</a>
+				<img src="/website/images/pingc/artbrand.png" alt="" class="artbrand">
+			</div>
+		</div>
+		<div class="arttitle">
+			<div>
+				<h2><%- dd.dt %></h2>
+				<p>
+					<span><%- ad.an %></span>
+					<span><%- ad.ah %></span>
+					<span>阅读：<%- dd.rn %></span>
+				</p>
+			</div>
+		</div>
+		<div class="article">
+			<div class="writer">
+				<div class="writertitle">
+					<img src="<%- ad.ai %>" alt="" class="writerpic"/>
+					<i></i>
+					<span>
+					<h3><%- ad.an %> <%- ad.at %></h3>
+					<h4><%-ad.ah %>  <%- ad.adn %></h4>
+				   </span>
+					<img src="/website/images/pingc/artslidedown.png" alt="" class="writertg"/>
+				</div>
+                <div class="writerinfo">
+                	<p>
+                		<span>擅长：</span>
+                		<%- ad.as %>
+                	</p>
+                	<p>
+                		<span>简介：</span>
+                		<%- ad.ade %>
+                	</p>
+                </div>
+                <div class="artcontent">
+                	<p><%- dd.dc %></p>
+                </div>
+			</div>
+		</div>
+		<!--我要咨询-->
+		<div class="consult">
+			<div class="payask">
+				<p>问儿科医生</p>
+			</div>
+			<div class="askstate">
+				<h3>评测报告解读，答疑解惑</h3>
+				<h4>
+					三甲名医，优质服务
+				</h4>
+			</div>
+			<a href="javascript:;" class="consultbtn">我要咨询</a>
+		</div>
+		<!--底部导航-->
+		<div class="pingnav">
+			<ul id="pingnav">
+				<li>
+					<a href="<%- get_babys_list_http %>" target="_self">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>数据管理</span>
+					</a>
+				</li>
+				<li>
+					<a href="<%- add_growth_index_http %>" target="_self">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>添加数据</span>
+					</a>
+				</li>
+				<li>
+					<a href="<%- sale_page_http %>?spid=3" target="_self">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>报告解读</span>
+					</a>
+				</li>
+				<li>
+					<a href="<%- service_index_http %>" target="_self">
+						<img src="/website/images/pingc/btnli.png" alt="" />
+						<span>问儿科医生</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="/website/javascripts/pingc/getRn.js?v=7726"></script>
+	<script type="text/javascript" src="/website/javascripts/pingc/pingce.js?v=7726"></script>
+	
+</html>

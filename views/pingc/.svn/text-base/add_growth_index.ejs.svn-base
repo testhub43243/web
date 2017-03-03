@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css?v=7625">
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css?v=7625" />
+		<link rel="stylesheet" href="/website/stylesheets/swiper.min.css?v=7625" />
+		<script type="text/javascript" src="/website/javascripts/zepto.min.js"></script>
+		<script type="text/javascript" src="/website/javascripts/store.min.js?v=7714"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js?v=7625"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.cookie.min.js"></script>
+		<title><% if(!gid){ %>添加生长数据<% }else{ %>修改生长数据<% } %></title>
+	</head>
+	<body>
+		<div class="top">
+			<p><% if(!gid){ %>添加数据<% }else{ %>修改数据<% } %></p>
+			<a href="javascript:void(0);" class="click_back"></a>
+		</div>
+		<div class="datatable">
+			<dl>
+				<dt><% if(sex == 1){ %>
+					<img class="image" src="/website/images/pingc/boybaby.png" alt="" />
+					<% }else{ %>
+					<img class="image" src="/website/images/pingc/girlbaby.png" alt="" />
+					<% } %>
+					<p class="in_n"><%- name %></p>
+				</dt>
+				<dd>
+					<span>测量日期</span>
+					<input type="text" id="in_rd" value="" />
+				</dd>
+				<dd class="change_text">
+					<span>身高</span>
+					<input type="text" id="in_h" value="<%- (h == 0)?'':h %>" />
+					<i>厘米</i>
+				</dd>
+				<dd>
+					<span>体重</span>
+					<input type="text" id="in_w" value="<%- (w == 0)?'':w %>" />
+					<i>千克</i>
+				</dd>
+				<dd>
+					<span>头围</span>
+					<input type="text" id="in_hz" value="<%- (hz == 0)?'':hz %>" />
+					<i>厘米</i>
+				</dd>
+			</dl>
+		</div>
+		<% if(!gid){ %>
+			<a href="javascript:;" class="databtn to_pingce save">查看评测报告</a>
+			<a href="javascript:;" class="databtn save">保存并继续添加</a>
+		<% }else{ %>
+			<a href="javascript:;" class="databtn save tolist">修改</a>
+			<a href="javascript:;" class="databtn deldatabtn save">删除</a>
+			<a href="javascript:;" class="seereport save to_pingce">查看该次报告</a>
+		<% } %>
+		<script>
+			var mid = '<%- mid %>';
+			var sk = '<%- sk %>';
+			var add_growth_http = '<%- add_growth_http %>';
+			var single_report_http = '<%- single_report_http %>';
+			var get_babys_list_http = '<%- get_babys_list_http %>';
+			var eva_report_http = '<%- eva_report_http %>';
+			var rd = '<%- rd %>';
+			var gid = '<%- gid %>';
+			var write_log_http = '<%- write_log_http %>';
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+			var md = store.get(mid + 'md');
+			var boy = '/website/images/pingc/boybaby.png';
+			var gird = '/website/images/pingc/girlbaby.png';
+			var img = $('.image');
+			var b = ga = '';
+			console.log(md);
+			for(var i = 0; md && i < md.length; i++){
+				if(mid == md[i].mid){
+					(md[i].hpurl != null && md[i].hpurl )?img.attr('src',md[i].hpurl):(md[i].sex == 1)?img.attr('src',boy):img.attr('src',gird);
+					$('.in_n').html(md[i].n);console.log(md[i].n);
+					b = md[i].b;
+					ga = md[i].ga;
+				}
+			}
+			$(function(){
+				var opt = {
+					theme: 'android-holo-light',
+					lang: 'zh',
+					display: 'modal', //显示方式
+					mode: 'scroller',
+					controls: ['calendar'],
+					headerText: '测量日期',
+					dateFormat: 'yyyy-mm-dd',
+					setText: '确定',
+					cancelText: '取消',
+					minWidth: 65,
+					dayText: '',
+					monthText: '',
+					yearText: '',
+					dateOrder: 'yyyymmdd',
+					minDate: '',
+					maxDate:'',
+					onSelect: function (valueText, inst) {
+						console.log(valueText);
+						(correctDay( valueText, b, ga))?$('.change_text span').html('身长'):$('.change_text span').html('身高');
+					},
+				};
+				$('#in_rd').mobiscroll().date(opt);console.log(rd);
+				if(rd == '' || rd == undefined || rd == null){
+					$('#in_rd').mobiscroll('setDate', new Date(), true);
+				}else{
+					$('#in_rd').mobiscroll('setDate', new Date( rd.replace(/-/g,'/')), true);
+				}
+			});
+		</script>
+		<script type="text/javascript" src="/website/javascripts/pingc/pingce.js"></script>
+		<script>
+			if(rd == '' || rd == undefined || rd == null){
+				var d = new Date();console.log(d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate());
+				(correctDay( d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(), b, ga))?$('.change_text span').html('身长'):$('.change_text span').html('身高');
+			}else{
+				(correctDay( rd, b, ga))?$('.change_text span').html('身长'):$('.change_text span').html('身高');
+			}
+		</script>
+		<script type="text/javascript" src="/website/javascripts/libs/log.js"></script>
+	</body>
+</html>

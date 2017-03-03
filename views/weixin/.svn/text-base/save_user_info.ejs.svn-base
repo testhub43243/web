@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		 <title><% if(para.hospital_name){ %><%- para.hospital_name %>&nbsp;-&nbsp;<%- para.ward_name %><% } %></title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css">
+		<link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+	</head>
+
+	<body style="background:#f1f3f6">
+		<script>
+			var winHeight = document.body.clientHeight;
+			var Html = document.getElementsByTagName('html');
+			Html[0].style.fontSize = winHeight / 6.4 + 'px';
+			var add_hospital_leads_http = '<%-add_hospital_leads_http %>';
+			var user_role = '<%- para.user_role %>';
+			var mom_name = '<%- para.mom_name %>';
+			var patient_identify = '<%- para.patient_identify %>';
+			var openid = '<%- para.openid %>';
+			var hospital_name = '<%- para.hospital_name %>';
+			var ward_name = '<%- para.ward_name %>';
+		</script>
+		<!-- start -->
+		<div class="ruyuandengji-top"></div>
+		<div class="ruyuandengji-cen ruyuandengji2-cen">
+			<div class="one-input">
+				<b>产妇年龄</b>
+				<span>
+                <input type="tel" placeholder="请输入产妇年龄" maxlength='2' class="chanfunianling">
+            </span>
+			</div>
+			<div class="one-input">
+				<b>预产期</b>
+				<span>
+                <input placeholder="请输入预产期" class="yuchanqi" id="date">
+            </span>
+			</div>
+			<div class="disease">
+				<p>如产妇存在以下疾病情况请认真勾选</p>
+				<% for(var i = 0; i < ds.length; i++){ 
+					if(ds[i].disease_type_id == 0){	%>
+				<div class="chs">
+					<input type="checkbox" name='illness' id='ds_<%- ds[i].disease_id %>' nam="<%- ds[i].disease_name %>" value="<%- ds[i].disease_id %>" />
+					<label for="ds_<%- ds[i].disease_id %>"><%- ds[i].disease_name %></label>
+				</div>
+				<% }} %>
+				<div class="chs">
+					<input type="checkbox" name='illness' id='ds_10005' nam="心脏疾患" value="10005" />
+					<label for="ds_10005">心脏疾患</label>
+				</div>
+				<!--<div class="chs active clear">
+					<input type="checkbox" name="illness" id="xinzang">
+					<label for="xinzang">
+						<div>心脏疾患</div>
+						<div>
+							<p>心律失常</p>
+							<p>心脏介入手术后</p>
+							<p>风湿性心脏病</p>	
+						</div>
+					</label>
+				</div>-->
+			</div>
+			<div class="one-input">
+				<b>产妇手机</b>
+				<span>
+                <input type="tel" placeholder="请输入手机号" maxlength='11' class="chanfushoujihao">
+            </span>
+			</div>
+			<div class="one-input">
+				<b>爱人手机</b>
+				<span>
+                <input type="tel" placeholder="请输入手机号" maxlength='11' class="airenshoujihao">
+            </span>
+			</div>
+		</div>
+		<div class="zhuce xiayibu">
+			<a href="javascript:;" class="shoujixiayibu">提交登记信息</a>
+		</div>
+		<div class="tanc">
+				<h3>请选择具体病种</h3>
+				<div class="choicebox">
+				<% for(var j = 0; j < ds.length; j++){
+					if(ds[j].disease_type_id == 1){	%>
+					<div class="chs shoushu">
+						<input type="checkbox" name="xinzang" id="ds_<%- ds[j].disease_id %>" value="<%- ds[j].disease_id %>" />
+						<label for="ds_<%- ds[j].disease_id %>"><%- ds[j].disease_name %></label>
+						<% if(ds[j].operation_display == 1){ %>
+						<div class="show">
+							<div class="switch">
+								<p>已进行手术</p>
+								<input type="checkbox" id="od_<%- ds[j].disease_id %>" class="chk-toggle">
+								<label for="od_<%- ds[j].disease_id %>"></label>
+							</div>
+						</div>
+						<% } %>
+					</div>
+					<% }} %>
+				</div>
+				<a href="javascript:;" class="sure">确定</a>
+			</div>
+			
+			<div class="mask"></div>
+		<!--<script src="/website/javascripts/jquery-1.11.0.js"></script>-->
+		<script src="/website/javascripts/zepto.min.js"></script>
+		<script src="/website/javascripts/weixin/ind.js"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js"></script>
+
+		<script>
+			$(function() {
+				var min_date = new Date(),
+					max_date = new Date();
+				min_date.setTime(min_date.getTime() - 30 * 24 * 3600 * 1000);
+				max_date.setTime(max_date.getTime() + 140 * 24 * 3600 * 1000);
+				$('#date').mobiscroll().date({
+					theme: 'android-holo-light',
+					lang: 'zh',
+					display: 'modal', //显示方式
+					mode: 'scroller',
+					controls: ['calendar'],
+					headerText: '预产期',
+					dateFormat: 'yyyy-mm-dd',
+					setText: '确定',
+					cancelText: '取消',
+					dayText: '',
+					monthText: '',
+					minWidth: 65,
+					dateOrder: 'yyyymmdd',
+					minDate: min_date,
+					maxDate: max_date
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

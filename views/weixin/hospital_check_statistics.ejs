@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><% if(hospital_name){ %><%- hospital_name %>&nbsp;-&nbsp;<%- ward_name %><% } %></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body style="background:#f4f4f4">
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var hospital_id = '<%- para.hospital_id %>';
+	var ward_id = '<%- para.ward_id %>';
+	var out_in_type = '<%- para.type %>';
+	var openid = '<%- para.openid %>';
+	var hospital_name = '<%- hospital_name %>';
+	var ward_name = '<%- ward_name %>';
+	var hospital_checkout_statistics_detail_http = '<%- hospital_checkout_statistics_detail_http %>';
+	var hospital_checkin_statistics_detail_http = '<%- hospital_checkin_statistics_detail_http %>';
+	var hospital_uncheckout_statistics_detail_http = '<%- hospital_uncheckout_statistics_detail_http %>';
+	var send_statistics_mail_http = '<%- send_statistics_mail_http %>';
+</script>
+<!-- start -->
+
+    <div class="top OverFlowV">
+        <div class="ruyuan-chuyuan ruyuan-chuyuan-weichuyuan">
+            <span <% if(para.type == 2){ %> class="active" <% } %>>出院统计<em></em></span>
+            <span <% if(para.type == 1){ %> class="active" <% } %>>入院统计<em></em></span>
+            <span <% if(para.type == 3){ %> class="active" <% } %>>未出院</span>
+        </div>
+    </div>
+	<!--出院------>
+    <div class="ChuYuanMingXi-cen JinRiRuYuan <% if(para.type != 2){ %> none <% } %>">
+        <div class="TongJi-bt"><span><i><%- checkout.total %></i></span>本周已出院</div>
+        <div class="a-tab">
+        	<% for(var i = 0; i < checkout.day_stat.length; i++){ %>
+            <a href="#" class="a-tab-cell click_out_detail <% if( i == 0 ){ %>active<% } %>"  st="<%-(formatDate(checkout.day_stat[i].day_title,'YYYY-MM-DD') + ' 00:00:00' ) %>" et="<%-(formatDate(checkout.day_stat[i].day_title,'YYYY-MM-DD') + ' 23:59:59') %>">
+            	<em><%- checkout.day_stat[i].day_out_count %></em>
+            	<b><% if( formatDaysInt(checkout.day_stat[i].day_title) == 0){ %>今天
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -1) {%>昨天
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -2) {%><%- formatDate(checkout.day_stat[i].day_title,'M.D') %>
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -3) {%><%- formatDate(checkout.day_stat[i].day_title,'M.D') %>
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -4) {%><%- formatDate(checkout.day_stat[i].day_title,'d') %>
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -5) {%><%- formatDate(checkout.day_stat[i].day_title,'d') %>
+            		<% }else if( formatDaysInt(checkout.day_stat[i].day_title) == -6) {%><%- formatDate(checkout.day_stat[i].day_title,'d') %>
+            		<% } %>
+            	</b>
+            	<i><p style="width:<%- percent(checkout.day_stat[i].day_out_count,checkout.day_stat[i].max) %>"></p></i>
+            </a>
+            <% } %>
+            <!--<a href="#" class="a-tab-cell"><em>80</em><b>昨天</b><i><p style="width:80%"></p></i></a>-->
+            <!--<a href="#" class="a-tab-cell"><em>100</em><b>7.11</b><i><p style="width:100%"></p></i></a>
+            <a href="#" class="a-tab-cell"><em>30</em><b>7.10</b><i><p style="width:30%"></p></i></a>-->
+            <!--<a href="#" class="a-tab-cell"><em>50</em><b>周一</b><i><p style="width:50%"></p></i></a>-->
+            <% for(var i = 0; i < checkout.week_stat.length; i++){ %>
+            <% if( i == 0){ %>
+            <div class="a-tab-cell">
+            	<em class="send_email" st="<%-(formatDate(checkout.week_stat[i].start_date,'YYYY-MM-DD') + ' 00:00:00' ) %>" et="<%-(formatDate(checkout.week_stat[i].end_date,'YYYY-MM-DD') + ' 23:59:59') %>">
+            		<%-checkout.week_stat[i].week_out_count%>
+            	</em>
+            	<b>
+            		上周（<%-formatDate(checkout.week_stat[i].start_date,"M.D")%>~<%-formatDate(checkout.week_stat[i].end_date,'M.D')%>）
+            	</b>
+            	<% if(checkout.week_stat[i].pay_status == 1){ %>
+            		<i></i>
+            	<% } %>
+            </div>
+            <% }else{ %>
+            <div class="a-tab-cell">
+            	<em class="send_email" st="<%-(formatDate(checkout.week_stat[i].start_date,'YYYY-MM-DD') + ' 00:00:00' ) %>" et="<%-(formatDate(checkout.week_stat[i].end_date,'YYYY-MM-DD') + ' 23:59:59') %>">
+            		<%-checkout.week_stat[i].week_out_count%>
+            	</em>
+            	<b>
+            		<%-formatDate(checkout.week_stat[i].start_date,"M.D")%>~<%-formatDate(checkout.week_stat[i].end_date,'M.D')%>
+            	</b>
+            	<% if(checkout.week_stat[i].pay_status == 1){ %>
+            		<i></i>
+            	<% } %>
+            </div>	
+            <% }} %>
+            <!--<div class="a-tab-cell"><em class="down_excel">50</em><b>上周（6.25~7.1）</b><i></i></div>-->
+            <!--<div class="a-tab-cell"><em class="down_excel">50</em><b>12.18~12.24</b><i></i></div>-->
+        </div>
+    </div>
+	<!--出院---------->
+	<!--入院------->
+    <div class="ChuYuanMingXi-cen JinRiRuYuan JinRiChuYuan <% if(para.type != 1){ %> none <% } %>">
+        <div class="TongJi-bt"><span><i><%- checkin.total %></i>已出<%- checkin.total_checkout %></span>本周已入院</div>
+        <div class="a-tab">
+        	<% for(var i = 0; i < checkin.day_stat.length; i++){ %>
+            <a href="#" class="a-tab-cell click_in_detail <% if( i == 0 ){ %>active<% } %>" st="<%-(formatDate(checkin.day_stat[i].day_title,'YYYY-MM-DD') + ' 00:00:00') %>" et="<%-(formatDate(checkin.day_stat[i].day_title,'YYYY-MM-DD') + ' 23:59:59') %>">
+            	<em><%- checkin.day_stat[i].day_in_count %></em>
+            	<b>
+            		<% if( formatDaysInt(checkin.day_stat[i].day_title) == 0){ %>今天
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -1) {%>昨天
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -2) {%><%- formatDate(checkin.day_stat[i].day_title,'M.D') %>
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -3) {%><%- formatDate(checkin.day_stat[i].day_title,'M.D') %>
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -4) {%><%- formatDate(checkin.day_stat[i].day_title,'d') %>
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -5) {%><%- formatDate(checkin.day_stat[i].day_title,'d') %>
+            		<% }else if( formatDaysInt(checkin.day_stat[i].day_title) == -6) {%><%- formatDate(checkin.day_stat[i].day_title,'d') %>
+            		<% } %>
+            	</b>
+            	<i>
+            		<p style="width:<%- percent(checkin.day_stat[i].day_in_count , checkin.day_stat[i].max) %>"></p>
+            		<p style="width:<%- percent(checkin.day_stat[i].day_out_count , checkin.day_stat[i].max) %>">
+            			<em>已出<%- checkin.day_stat[i].day_out_count %></em>
+            		</p>
+            	</i>
+            </a>
+            <% } %>
+            
+            <% for(var i = 0; i < checkin.week_stat.length; i++){ %>
+            <% if( i == 0){ %>
+            <div class="a-tab-cell ruyuanem">
+            	<em class="" st="<%-(formatDate(checkin.week_stat[i].start_date,'YYYY-MM-DD') + ' 00:00:00') %>" et="<%-(formatDate(checkin.week_stat[i].end_date,'YYYY-MM-DD') + ' 23:59:59') %>">入:<i><%- checkin.week_stat[i].week_in_count %></i>已出:<i><%- checkin.week_stat[i].week_out_count %></i>
+            	</em>
+            	<b>
+            		上周（<%- formatDate(checkin.week_stat[i].start_date,"M.D") %>~<%- formatDate(checkin.week_stat[i].end_date,'M.D') %>）
+            	</b>
+            	<!--<i></i>-->
+            </div>
+            <% }else{ %>
+            <div class="a-tab-cell ruyuanem">
+            	<em class="" st="<%-(formatDate(checkin.week_stat[i].start_date,'YYYY-MM-DD') + ' 00:00:00') %>" et="<%-(formatDate(checkin.week_stat[i].end_date,'YYYY-MM-DD') + ' 23:59:59') %>">入:<i><%- checkin.week_stat[i].week_in_count %></i>已出:<i><%- checkin.week_stat[i].week_out_count %></i>
+            	</em>
+            	<b>
+            		<%- formatDate(checkin.week_stat[i].start_date,"M.D") %>~<%- formatDate(checkin.week_stat[i].end_date,'M.D') %>
+            	</b>
+            	<!--<i></i>-->
+            </div>
+            <% }} %>
+            <!--<div class="a-tab-cell"><em class="down_excel">50</em><b>6.25~7.1</b><i></i></div>
+            <div class="a-tab-cell"><em class="down_excel">50</em><b>12.18~12.24</b><i></i></div>-->
+        </div>
+    </div>
+	<!--入院-----end--->
+	<!--未出院-----start--->
+    <div class="ChuYuanMingXi-cen <% if(para.type != 3){ %> none <% } %>">
+        <div class="TongJi-bt"><span>未登记出院人数</span>入院时间</div>
+        <div class="a-tab">
+        	<% for(var i = 0; i < uncheckout.week_stat.length; i++){ %>
+            <a href="#" class="a-tab-cell click_unout_detail" st="<%- (formatDate(uncheckout.week_stat[i].start_date,'YYYY-MM-DD') +' 00:00:00' ) %>" et="<%-(formatDate(uncheckout.week_stat[i].end_date,'YYYY-MM-DD') + ' 23:59:59') %>">
+            	<b><%- formatDate(uncheckout.week_stat[i].start_date,"M.D") %>~<%- formatDate(uncheckout.week_stat[i].end_date,"M.D") %></b>
+            	<em><%- uncheckout.week_stat[i].week_count %></em>
+            </a>
+            <% } %>
+        </div>
+    </div>
+	<!--未出院-----end--->
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

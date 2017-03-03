@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		<script src='/website/javascripts/zepto.min.js'></script>
+		<link rel="stylesheet" href="/website/stylesheets/weixin/redbox.css" />
+		<title>小鲤鱼育儿</title>
+	</head>
+
+	<body>
+		<div class="redbox">
+			<img src="/website/images/weixin/bigpresent.png" alt="" class="bigpresent" />
+			<p class="anxin"><span>·</span>从容面对问题<span>·</span>安心坐月子<span>·</span></p>
+			<div class="redquebg">
+				<p>新生儿护理，脐带绕颈，母乳喂养<br>剖宫产恢复，侧切伤口恢复，遇到<br>这些问题怎么办？</p>
+			</div>
+			<div class="getredbox">
+				<a href="javascript:void(0)">
+					<img src="/website/images/weixin/getredbox.png" alt="" class="getredbtn">
+					<img src="/website/images/weixin/get.png" alt="" class="get" />
+				</a>
+			</div>
+		</div>
+	</body>
+	<script src="/website/javascripts/weixin/log.js"></script>
+	<script>
+		var apply_trial_contract_http = '<%- apply_trial_contract_http %>';
+		var apply_experience_succ_http = '<%- apply_experience_succ_http %>';
+		var weixin_log_http = '<%- weixin_log_http %>';
+		var wx_tag_id = '<%- wx_tag_id %>';
+		var apply_trial = '<%- apply_trial %>';
+		var tmp_leads_id = '<%- tmp_leads_id %>';
+		var contract_start_date = '<%- contract_start_date %>';
+		var contract_end_date = '<%- contract_end_date %>';
+		var entry = '<%- entry %>';
+		if(weixin_log_http){
+			weixin_log(apply_trial,entry);
+		}
+	</script>
+	<script src="/website/javascripts/weixin/ind.js"></script>
+	
+</html>

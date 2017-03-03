@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="wap-font-scale" content="no">
+		<script src='/website/javascripts/zepto.min.js'></script>
+		<link rel="stylesheet" href="/website/stylesheets/weixin/redbox.css" />
+		<title>小鲤鱼育儿</title>
+	</head>
+	<body style="background-color:#fff8ea;">
+		<div class="tiyanbox">
+			<!--第一阶段-->
+			<% if(wx_tag_id == 105){ %>
+			<img src="/website/images/weixin/tiyan-in.png" alt="" class="tiyan"/>
+			<p class="tiyan-word">当您的宝宝诞生后，请在此公众号中补<br>充宝宝信息，即可立即激活服务，并获<br>得400元服务消费代金券。<br><br>任何母婴健康问题，新生儿护理问题都<br>可以向我咨询。如果遇到需要专科医生<br>才能解决的问题，我会安排三甲医院的<br>名医直接与您通话咨询。<br>这些都是完全免费的哦~！
+			</p>
+			<% }else if(wx_tag_id == 111){ %>
+			<!--第二阶段-->
+			<img src="/website/images/weixin/tiyan-eva.png" alt="" class="tiyan" />
+			<p class="tiyan-word">当您<a href="<%- out_hospital_reg_http %>" class="tiyan-out">出院</a>后，即可立即激活服务，<br>并获得400元服务消费代金券。<br><br>任何母婴健康、新生儿护理的问题<br>都可以向我咨询。如果遇到需要专<br>科医生才能解决的问题，我会安排<br>三甲医院的名医直接与您通话咨询。<br>这些都是完全免费的哦！
+			</p>
+			<% }else if(wx_tag_id == 112 || wx_tag_id == 106){ %>
+			<!--第三阶段-->
+			<img src="/website/images/weixin/tiyan-open.png" alt="" class="tiyan tiyan-open"/>
+			<% } %>
+		</div>
+		<!--第一阶段-->
+		<% if(wx_tag_id == 105){ %>
+		<a href="<%- to_doc_service_url %>" class="step-two">查看母婴私人医生服务详细介绍</a>
+		<% }else if(wx_tag_id == 111){ %>
+		<!--第二阶段-->
+		<a href="<%- out_hospital_reg_http %>" class="step-two">立即登记出院激活服务</a>
+		<a href="<%- to_doc_service_url %>" class="step-two">查看母婴私人医生服务详细介绍</a>
+		<% }else if(wx_tag_id == 112 || wx_tag_id == 106){ %>
+        <!--第三阶段-->
+		<div class="download">
+			<a href="<%- download_detail_http %>">
+				<img src="/website/images/weixin/download.png" alt="" class="downloadbtn" />
+			</a>
+			<h4>请您用当前微信号登陆</h4>
+			<p class="phonecall">我将在1个工作日内电话联系您，向您详细介绍<br>我们的服务方式，请注意接听区号为010的来电</p>
+			<p class="tiyanqi">您的体验期为：<%- contract_start_date %>~<%- contract_end_date %><br>400元服务消费代金券已放入您的账户</p>
+			<a href="<%- to_doc_service_url %>" class="privdoc-open">查看母婴私人医生服务详细介绍</a>
+		</div>
+		<% } %>
+	</body>
+	<script src="/website/javascripts/weixin/log.js"></script>
+	<script>
+		var weixin_log_http = '<%- weixin_log_http %>';
+		var apply_trial = '<%- apply_trial %>';
+		var entry = '<%- entry %>';
+		if(entry && weixin_log_http){
+			weixin_log(apply_trial,entry);
+		}
+	</script>
+	<script src="/website/javascripts/weixin/ind.js"></script>
+</html>

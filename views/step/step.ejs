@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="email=no">
+		<div>
+		<!--<script id="po">
+			var i=0;
+			i=window.devicePixelRatio>1?1/window.devicePixelRatio:1;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+i+',minimum-scale='+i+',maximum-scale='+i+',user-scalable=no" />');
+		</script>-->
+		</div>
+		<title>	step</title>
+		<script >
+			var oHtml=document.getElementsByTagName("html")[0];
+			var iWidth=oHtml.getBoundingClientRect().width;
+			oHtml.style.fontSize=iWidth/18+"px";
+			//69
+//			50，量的再除以50
+		</script>
+	</head>
+		<link rel="stylesheet" type="text/css" href="/website/stylesheets/step/step1.css"/>
+		<!--er-->
+		<link rel="stylesheet" type="text/css" href="/website/stylesheets/step/stepchajian.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="/boss/stylesheets/mobiscroll.css"/>-->
+		<link rel="stylesheet" type="text/css" href="/website/stylesheets/step/mobiscroll.custom-2.16.1.min.css"/>
+		<!--san-->
+	<link rel="stylesheet" type="text/css" href="/website/stylesheets/step/mobiscroll.custom-2.16.1.min1.css"/>
+	<body id="content">
+	<section id="section1" >
+	<header id="header1"><!--/boss/website/images/sales/icon_saler.png-->
+	<img src="/website/images/step/z-2.JPG" class="img1"/>
+	<nav class="nav1">基本信息</nav>
+	<nav class="nav2">发育数据</nav>
+	<nav class="nav3">联系方式</nav>
+	<div class="tb1"></div>
+	<p class="p1">一个宝宝</p>
+	<div class="tb2"></div>
+	<p class="p2">双胞胎</p>
+	</header>
+	<section id="tb">
+	<!--<div class="tb1"></div>
+	<p class="p1">一个宝宝</p>
+	<div class="tb2"></div>
+	<p class="p2">双胞胎</p>-->
+    <section class="picture">
+    	<!--<img src="/boss/img/z-2.png" />-->
+    	<span id="pic_span_0" class="first"></span>
+    	<img src="/website/images/step/z-3.png" />
+    	<span id="pic_span_1" class="first" style="display: none;"></span>
+    	<span style="display: none;" id="pic_span_2"  class="first"></span>
+    	<section class="double_picture">
+        <span class="sele0"></span>
+        <span class="sele0"></span>
+        <span class="sele0"></span>
+        <span class="sele"></span>
+        <span class="sele"></span>
+        <span class="sele"></span>
+        <nav>龙凤胎</nav>
+        <nav>兄弟</nav>
+        <nav>姐妹</nav>
+        </section>
+    </section>
+
+    </section>
+    <section class="tab" style="display: none;">
+    	<div class="tb3"></div>
+    	<nav class="tab_nav1">宝宝已起名字</nav>
+    	<div class="tb4"></div>
+    	<nav class="tab_nav2">名还没想好</nav>
+    </section>
+       <section class="tab2" style="display: none;">
+    	<div class="tb3_2"></div>
+    	<nav class="tab_nav3">宝宝已起名字</nav>
+    	<div class="tb4_2"></div>
+    	<nav class="tab_nav4">名还没想好</nav>
+    </section>
+    <section class="babby" style="display: none;">
+    	<input type="text" name="aa"  placeholder="请输入宝宝名字或昵称" value="" style="color: #b36279; font-size: .8rem;" maxlength="10" id="input_1" />
+    	<input type="text" name="ss" placeholder="请输入宝妈的名字" value="" style="display: none;font-size: .8rem;" maxlength="10" id="input_2"/>
+    	<input type="text" name="sq" value=""  style="display: none;width: 7.36rem;font-size: .8rem;" maxlength="10" id="input_3"/>
+    	<input type="text" name="sw" value="" style="display: none;width: 7.36rem;font-size: .8rem;" maxlength="10" id="input_4"/>
+    	<span style="display: none;"></span>
+    	<span style="display: none;"></span>
+    	<div id="step1_next">
+    	<a href="#">下一步</a>
+    	<span>下一步</span>
+    	</div>
+    </section>
+    <footer>
+    </footer>
+    </section>
+    <!--第二页-->
+    <section id="section2" >
+    <header class="header2"><!--/boss/website/images/sales/icon_saler.png-->
+	<img src="/website/images/step/step2-1.png" class="img1"/>
+	<nav class="nav1">基本信息</nav>
+	<nav class="nav2">发育数据</nav>
+	<nav class="nav3">联系方式</nav>
+	</header>
+		<section class="step2_center">
+			<div class="top">		
+			<span class="step2_birth"></span>
+			<input placeholder="宝宝生日" type="text" class="ipt_birthday" id="demo_2" placeholder="Please Select..." style="font-size: .8rem;"/>
+			</div>
+			<div class="top">		
+			<span class="step2_old"></span>
+			<input placeholder="出生胎龄" class="ipt_od " id="beginTime" style="font-size: .8rem;"/>
+			</div>
+			<div class="top">		
+			<span class="step2_length"></span>
+			<input placeholder="出生身长" type="number" name="number" maxlength="4" class="ipt_length blo" oninput="if(value.length>4)value=value.slice(0,4)" style="font-size: .8rem;"/>
+			<span class="cm blo">厘米</span>
+			<input placeholder="身长" type="number" name="number" maxlength="4" oninput="if(value.length>4)value=value.slice(0,4)" class="double_length mmz dis" style="font-size: .8rem;"/>
+			<span class="double_cm0 dis">厘米</span>
+			<span class="o1 dis">宝一</span>
+			<span class="o2 dis">宝二</span>
+			<input placeholder="身长" type="number" name="number" maxlength="4" oninput="if(value.length>4)value=value.slice(0,4)" class="double_length double_length2 dis hou" style="font-size: .8rem;"/>
+			<span class="double_cm dis">厘米</span>
+			<span class="o3 dis">宝一</span>
+			<span class="o4 dis">宝二</span>
+			</div>
+			<div  class="top">		
+			<span class="step2_weight"></span> 
+			<input placeholder="出生体重" type="tel" name="number" maxlength="4" class="ipt_weight blo" style="font-size: .8rem;"/>
+			<input placeholder="体重" type="tel" name="number" maxlength="4" class="double_weight mmz1 dis" style="font-size: .8rem;"/>
+			<span class="double_kg dis">克</span>
+			<span class="o1 dis">宝一</span>
+			<span class="o2 dis">宝二</span>
+			<input placeholder="体重" type="tel" name="number" maxlength="4" class="double_weight double_weight2 dis hou2" style="font-size: .8rem;"/>
+			<span class="double_kg none dis">克</span>
+			<span class="kg none blo">克</span>
+			</div>
+		</section>
+		<footer id="footer1">
+			<div class="pre">
+				<a href="/boss/step1" class="step2_pre">上一步</a>
+			</div>
+			<div class="next">
+				<a href="#">下一步</a>
+			</div>
+		</footer>
+<!--<section class="fuchuang">
+	
+</section>-->
+<!--<div class="lie"><input id="endTime" class="kbtn" style="display: none;"></div>-->
+<div id="datePlugin">
+				<div id="dateshadow" style="display: none;"></div>
+				<div id="datePage" class="page" style="display: none; height: 380px; top: 60px;">
+					<section>
+						<div id="datetitle">
+							<h1>宝宝胎龄</h1></div>
+						<div id="datemark">
+							<a id="markyear"></a>
+							<a id="markmonth"></a>
+							<a id="markday"></a>
+						</div>
+						<div id="timemark">
+							<a id="markhour"></a>
+							<a id="markminut"></a>
+							<a id="marksecond"></a>
+						</div>
+						<div id="datescroll">
+							<div id="yearwrapper" style="overflow: hidden; position: absolute; bottom: 200px;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -125.616px, 0px) scale(1);">
+									<li>&nbsp;</li>
+									<li>2015年</li>
+									<li>2016年</li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+							<div id="monthwrapper" style="overflow: hidden; position: absolute; bottom: 200px;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -47.1058px, 0px) scale(1);">
+									<li>&nbsp;</li>
+
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+							<div id="daywrapper" style="overflow: hidden; position: absolute; bottom: 200px;display: none;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -240px, 0px) scale(1);">
+									<li>&nbsp;</li>
+									<li>1日</li>
+									<li>2日</li>
+									<li>3日</li>
+									<li>4日</li>
+									<li>5日</li>
+									<li>6日</li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+						</div>
+						<div id="datescroll_datetime" style="display: block;">
+							<div id="Hourwrapper" style="overflow: hidden;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -88.6px, 0px) scale(1);">
+									<li>&nbsp;</li>
+									<li>1时</li>
+									<li>2时</li>
+									<li>3时</li>
+									<li>4时</li>
+									<li>5时</li>
+									<li>6时</li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+							<div id="Minutewrapper" style="overflow: hidden;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -312px, 0px) scale(1);">
+									<li>&nbsp;</li>
+									<li>20分</li>
+									<li>21分</li>
+									<li>22分</li>
+									<li>23分</li>
+									<li>24分</li>
+									<li>25分</li>
+									<li>26分</li>
+									<li>27分</li>
+									<li>28分</li>
+									<li>29分</li>
+									<li>30分</li>
+									<li>31分</li>
+									<li>32分</li>
+									<li>33分</li>
+									<li>34分</li>
+									<li>35分</li>
+									<li>36分</li>
+									<li>37分</li>
+									<li>38分</li>
+									<li>39分</li>
+									<li>40分</li>
+									<li>41分</li>
+									<li>42分</li>
+									<li>43分</li>
+									<li>44分</li>
+									<li>45分</li>
+									<li>46分</li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+							<!--<div id="Secondwrapper" style="overflow: hidden;">
+								<ul style="transition-property: -webkit-transform; transform-origin: 0px 0px 0px; transform: translate3d(0px, -8.6px, 0px) scale(1);">
+									<li>&nbsp;</li>
+									<li>上午</li>
+									<li>下午</li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>-->
+						</div>
+					</section>
+					<footer id="dateFooter">
+						<div id="setcancle">
+							<ul>
+								
+								<li id="datecancle">取消</li>
+								<li id="dateconfirm">确定</li>
+							</ul>
+						</div>
+					</footer>
+				</div>
+			</div>
+	</section>
+	<!--第二页双胞胎-->
+
+<!--	第三页-->
+	<section id="section3">
+	    <header id="header3">
+			<img src="/website/images/step/step2-3.png" class="img1"/>
+			<nav class="nav1">基本信息</nav>
+			<nav class="nav2">发育数据</nav>
+			<nav class="nav3">联系方式</nav>
+		</header>
+		<ul class="contact">
+			<li>
+				<img src="/website/images/step/mommy.png" alt="mommy" />
+				<input type="number" name="number" placeholder="请输入宝妈手机"   class="step3_input1" oninput="if(value.length>11)value=value.slice(0,11)" style="font-size: .8rem;"/>
+			</li>
+			<li>
+				<img src="/website/images/step/dady.png" alt="dady" />
+				<input type="number" name="number" placeholder="请输入宝爸手机" class="step3_input2" oninput="if(value.length>11)value=value.slice(0,11)" style="font-size: .8rem;"/>
+			</li>
+			<li class="date15">
+				<img src="/website/images/step/date.png" alt="date" id="dateimg"/>
+				<input type="text" placeholder="请输入出院日期" class="step3_input3" style="font-size: .8rem;"id="demo2" />
+				<input type="text" placeholder="请输入出院日期" class="step3_input4" style="font-size: .8rem;" />
+				<span ><a href="#" class="step3_span"></a>不确定</span>
+			</li>
+		</ul>
+		<section class="step">
+			<a href="#" class="pre">上一步</a>
+			<a href="#" class="next" style="background-color: ;" id="zp">下一步</a>
+		</section>
+		<footer></footer>
+
+	</section>
+	</body>
+	<script type="text/javascript">
+			var lead_add_url = '<%- lead_add_url %>';
+			console.log( '-----------------------');
+			console.log( lead_add_url);
+	</script>
+<script src="/website/javascripts/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="/website/javascripts/step/jquery.hash.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+</script>
+	<script src="/website/javascripts/step/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/website/javascripts/mobiscroll.custom-2.16.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/website/javascripts/step/date.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/website/javascripts/step/step.js"></script>
+	<!--第二页-->
+	<script src="/website/javascripts/step/stepdate.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#beginTime').date();
+				$('#endTime').date({
+					theme: "datetime"
+				});
+			});
+		</script>
+</html>

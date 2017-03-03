@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><% if(hospital_name){ %><%- hospital_name %>&nbsp;-&nbsp;<%- ward_name %><% } %></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body>
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var ward_id = '<%- para.ward_id %>';
+	var hospital_id = '<%- para.hospital_id %>';
+	var openid = '<%- para.openid %>';
+	var hospital_name = '<%- hospital_name %>';
+	var ward_name = '<%- ward_name %>';
+	var hospital_check_statistics_http = '<%- hospital_check_statistics_http %>';
+</script>
+<!-- start -->
+
+    <div class="top OverFlowV">
+        <div class="ruyuan-chuyuan">
+            <span class="active">今日入院（<%- checkin_total %>）</span>
+            <span>今日出院（<%- checkout_total %>）</span>
+        </div>
+    </div>
+    
+    <div class="ChuYuanMingXi-cen JinRiRuYuan">
+    	<% for(var i = 0; i < checkin_list.length; i++){ %>
+        <span>
+            <em>
+                <div class="c-name"><b><%- checkin_list[i].mom_name %></b><i><%- checkin_list[i].patient_identify %></i></div>
+                <div class="r-time">年龄：<%- checkin_list[i].mom_age %><i></i>预产期：<%- formatDate(checkin_list[i].due_date , "MM-DD") %></div>
+            </em>
+            <em>
+                <div class="chanfu-jiashu"><p>产妇：<%- checkin_list[i].mom_tel %></p><p>家属：<%- checkin_list[i].dad_tel %></p></div>
+            </em>
+        </span>
+        <% } %>
+        
+    </div>
+
+    <div class="ChuYuanMingXi-cen none JinRiChuYuan">
+    	<% for(var i = 0; i < checkout_list.length; i++){ %>
+        <span>
+            <em>
+                <div class="c-name"><b><%- checkout_list[i].mom_name %></b><i><%- checkout_list[i].patient_identify %></i></div>
+            </em>
+            <em>
+                <div class="s-time">
+                	<% if( checkout_list[i].members ){ %>
+                	<% for(var j = 0; j < checkout_list[i].members.length; j++){
+                		if( checkout_list[i].members.length == 2 && (parseInt(checkout_list[i].members[0].member_sex) ^ parseInt(checkout_list[i].members[1].member_sex))){ %>
+                			<i class="boy"></i>
+                			<i class="girl"></i>
+                			<% break; %>
+                		<% }else{ %>
+	                		<% if( checkout_list[i].members[j].member_sex == 1 ){ %>
+	                			<i class="boy"></i>
+	                		<% }else if( checkout_list[i].members[j].member_sex == 0){ %>
+	                			<i class="girl"></i>
+                	<% }}}} %>
+                	&nbsp;&nbsp;生日&nbsp;&nbsp;<%- formatDate(checkout_list[i].member_birthday ,"M-D") %>
+                </div>
+            </em>
+        </span>
+        <% } %>
+        
+    </div>
+
+    <div class="foot-as">
+        <a href="#" class="out_in_hos_click">数据统计</a>
+    </div>
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新生儿发育评测</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body style="background:#fafbfd;">
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var tmp_leads_id = '<%- tmp_leads_id %>';
+	var member_sex = '<%- member_sex %>';
+	var member_birthday = '<%- member_birthday %>';
+	var deliver_type_id = '<%- deliver_type_id %>';
+	var deliver_question_ids = '<%- deliver_question_ids %>';
+	var openid = '<%- openid %>';
+	var add_hospital_leads_member_http = '<%- add_hospital_leads_member_http %>';
+	var get_baby_evaluation_http = '<%- get_baby_evaluation_http %>';
+//	function checkNum( event ){
+//		if((event.keyCode<48||event.keyCode>57) && event.keyCode!=46){
+//			tanc('只能输入数字和小数点');
+//			return false;
+//		}
+//	}
+</script>
+	<script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+<!-- start -->
+    <div class="baby-xuanze-top"></div>
+    <div class="baby-bt baby-shuju"><img src="/website/images/weixin/juanchi.png">身长</div>
+    <div class="baby-xuanze">
+        <div class="baby-bsday baby-tizhong"><div class="bc">厘米</div>
+        <input type="number" placeholder="出生身长" class="chushengshengao" />
+        </div>
+    </div>
+    <div class="baby-bt baby-shuju"><img src="/website/images/weixin/tizhongqi.png">体重</div>
+    <div class="baby-bsday baby-tizhong"><div class="bc">克</div><input type="tel" placeholder="出生体重" maxlength='4' class="chushengtizhong"></div>
+
+    <div class="baby-chusheng-tishi">
+        如果您不知道宝宝出生时的身长体重，请向护士了解后回到此页面录入。通过宝宝的身长体重数据评测，可以及时掌握宝宝发育情况，科学指导喂养。
+    </div>
+    <div class="zhuce baogao-dengji"><a href="javascript:;" class="chakanfayucepingbaogao">查看发育测评报告</a></div>
+<!-- end -->
+    <!--<script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>-->
+</body>
+</html>

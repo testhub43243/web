@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title><%= title %></title>
+		<meta name="keywords" content="<%= kw %>" />
+		<meta name="description" content="<%= descr %>" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<link rel="stylesheet" type="text/css" href="/website/stylesheets/common.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (max-width:992px),only screen and(max-device-width:992px)" href="/website/stylesheets/seo/report_mobile.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (max-width:992px),only screen and(max-device-width:992px)" href="/website/stylesheets/mobiscroll.custom-2.16.1.min.css" />
+		<link rel="stylesheet" type="text/css" media="only screen and (min-width:992px),only screen and(min-device-width:992px)" href="/website/stylesheets/seo/report_wide.css" />
+	</head>
+
+	<body class="bodyBg">
+		<div class="wrap">
+			<div id="header">
+				<a class="logo"></a>
+				<ul class="nav">
+					<li><a href="http://www.tiaolm.com">首页</a><span></span>
+					</li>
+					<li><a href="/mis/document/app_view">评测</a><span></span>
+					</li>
+					<li><a href="/mis/doc_list/Jn8pJC04f2d_bG5_cX8pNDl_Z39va2hkf3F_KTN_Z38BKGk7OTkBKGhta2h_IA.html">知识</a><span></span>
+					</li>
+					<li><a href="/mis/document/service_view">服务</a><span></span>
+					</li>
+				</ul>
+				<span class="hotline"></span>
+			</div>
+			<!--****************主体添加内容******************-->
+			<div id="subLeft">
+				<!--头部-->
+				<header class="head">
+					<div class="headLeft">
+						<img src="/website/images/seo/seo_headLeft.png" />
+					</div>
+					<div class="headCenter">
+						宝宝生长发育标准
+					</div>
+					<div class="headRight">
+						<img src="/website/images/seo/seo_headRight.png" />
+					</div>
+				</header>
+				<!--标题-->
+				<div class="headline">
+					<%= memberAge %>宝宝发育标准解读
+				</div>
+				<!--宝宝发育指标范围-->
+				<div class="babyGrowth">
+					<div class="babyHead">
+						<div class="babyHeadTxt">
+							<%= memberAge %>宝宝发育指标范围
+						</div>
+					</div>
+					<div class="babyBoy clearfix">
+						<dl class="fl">
+							<dt><img src="/website/images/seo/report_boyBaby.png"/></dt>
+							<dd>男宝宝</dd>
+						</dl>
+						<div class="boyTxt fl">
+							<div class="weight">
+								体重:<span class="num"><%= boyRangeWeight %></span><span class="unit fr">kg</span>
+							</div>
+							<div class="weight">
+								身长:<span class="num"><%= boyRangeHeight %></span><span class="unit fr">cm</span>
+							</div>
+							<div class="weight">
+								头围:<span class="num"><%= boyRangeHs %></span><span class="unit fr">cm</span>
+							</div>
+						</div>
+
+					</div>
+					<div class="babyBoy babyGirl clearfix">
+						<dl class="fl">
+							<dt><img src="/website/images/seo/report_girlBaby.png"/></dt>
+							<dd>女宝宝</dd>
+						</dl>
+						<div class="boyTxt fl">
+							<div class="weight">
+								体重:<span class="num"><%= girlRangeWeight %></span><span class="unit fr">kg</span>
+							</div>
+							<div class="weight">
+								身长:<span class="num"><%= girlRangeHeight %></span><span class="unit fr">cm</span>
+							</div>
+								头围:<span class="num"><%= girlRangeHs %></span><span class="unit fr">cm</span>
+							</div>
+						</div>
+
+					</div>
+				<!--参考-->
+				<div class="reference">
+					参考《世界卫生组织最新(2006年)全球标准》
+				</div>
+				<!--发育相关文字-->
+				<div class="babyGrowthTxt">
+					<p>正常的生长发育是人一生健康和发展的重要基石。儿童在成长过程中需要定期进行生长监测和评估，以便及时发现可能存在的问题并给予及时的纠正，最大限度地促进儿童健康成长。</p>
+					<p>因此仅仅在某个时间点对照宽泛的范围是无法给出有效的生长发育评价的，需要进行连续的监测与评估</p>
+					<div class="evaluation">
+						<a href="#myEvaluation">我要评测</a>
+					</div>
+				</div>
+				<!--宝宝发育指标案例解读-->
+				<div class="example">
+					<div class="babyHead babyExample">
+						<div class="babyHeadTxt">
+							<div class="babyInfo">
+								以下为一名<%= memberAge %>宝宝
+							</div>
+							<div class="babyTxt">
+								发育指标案例及解读
+							</div>
+						</div>
+					</div>
+					<div class="babyExampleInfo">
+						<div class="babyBaseInfo">
+							<div class="babyAge">
+								<!--宝宝年龄待更改-->
+								<span class="c_3">宝宝日龄:</span> &nbsp;<%- memberAgeBlue %>
+							</div>
+							<div class="babySex">
+								<span class="c_3">宝宝性别:</span> &nbsp;<span class="blue"><%= memberSex %></span>
+							</div>
+							<div class="babyRecord">
+								<span class="c_3">连续记录:</span> &nbsp;<span class="blue"><%= memberGrowthCount %></span>次
+							</div>
+						</div>
+						<div class="babySingleInfo">
+							<div class="singleHead">
+								宝宝身长体重发育单项评价
+							</div>
+						</div>
+						<div class="babyGraph">
+							<div class="babyGraphInfo">
+								<div class="graphTxt">
+									体重(千克)
+								</div>
+								<div class="graph" id="weight">
+								</div>
+							</div>
+							<div class="babyGraphTxt">
+								<p><%= lateralWeight %></p>
+								<p><%= longitudinalWeight %></p>
+							</div>
+						</div>
+						<div class="babyGraph">
+							<div class="babyGraphInfo">
+								<div class="graphTxt">
+									身长(厘米)
+								</div>
+								<div class="graph" id="height">
+
+								</div>
+							</div>
+							<div class="babyGraphTxt">
+								<p><%= lateralHeight %></p>
+								<p><%= longitudinalHeight %></p>
+							</div>
+						</div>
+						<div class="babyGraph">
+							<div class="babyGraphInfo">
+								<div class="graphTxt">
+									匀称性( %)
+								</div>
+								<div class="graph" id="bmi">
+
+								</div>
+							</div>
+							<div class="babyGraphTxt">
+								<p><%= lateralBmi %></p>
+								<p><%= longitudinalBmi %></p>
+							</div>
+						</div>
+						<div class="babyGraph">
+							<div class="babyGraphInfo">
+								<div class="graphTxt">
+									头围(厘米)
+								</div>
+								<div class="graph" id="headsize">
+
+								</div>
+							</div>
+							<div class="babyGraphTxt">
+								<p><%= lateralHeadsize %></p>
+								<p><%= longitudinalHeadsize %></p>
+							</div>
+						</div>
+						
+						<div class="babySingleInfo">
+							<div class="singleHead allHead">
+								宝宝身长体重生长发育综合评价
+							</div>
+						</div>
+						<div class="babyAllTxt">
+							<%= reportContent %>
+							<%= riskPrompt %>
+						</div>
+					</div>
+				</div>
+				<div class="spaceTop"></div>
+				<div class="more">
+                                         <!--
+					<a href="##">点此查看更多生长曲线评测案例</a>
+                                                -->
+                                           <img src='/website/images/seo/pc_app_qrcode.jpg'/>
+                                        
+				</div>
+				<!--关注评测从这里开始-->
+				<div class="begin" id="myEvaluation">
+					<div class="together">
+						与<%=memberCount%>位家长一起
+					</div>
+					<div class="careBegin clearfix">
+						<div class="leftBlock">
+							<img src="/website/images/seo/report_blocks.png" />
+						</div>
+						<div class="centerBlock">
+							关注宝宝的生长发育评测从这里开始
+						</div>
+						<div class="rightBlock">
+							<img src="/website/images/seo/report_blocks.png" />
+						</div>
+					</div>
+				</div>
+				<!--测评-->
+				<form class="measure" style='display:none' id='eva_form'>
+					<div class="measureHeight">
+						<span class="mHeightTxt">测量日期</span>
+						<input class="mHeightNum" type="text" name="" id="rd" value="" placeholder="测量日期" />
+						<span class="mHeightUnit fr"></span>
+					</div>
+					<div class="measureHeight">
+						<span class="mHeightTxt">身长</span>
+						<input class="mHeightNum" type="text" name="" id="mh" value="" placeholder="请输入身长" />
+						<span class="mHeightUnit fr">厘米</span>
+					</div>
+					<div class="measureHeight">
+						<span class="mHeightTxt">体重</span>
+						<input class="mHeightNum" type="text" name="" id="mw" value="" placeholder="请输入体重" />
+						<span class="mHeightUnit fr">千克</span>
+					</div>
+                                        <div class="measureHeight">
+						<span class="mHeightTxt">头围</span>
+						<input class="mHeightNum" type="text" name="" id="mhz" value="" placeholder="请输入头围" />
+						<span class="mHeightUnit fr">厘米</span>
+					</div>
+					<div class="measureHeight">
+						<span class="mHeightTxt">出生日期</span>
+						<input class="mHeightNum" type="text" name="" id="mb" value="" placeholder="宝宝出生日期" />
+						<span class="mHeightUnit fr"></span>
+					</div>
+                                        <input type='hidden' id='sk' value='<%= shareKey %>'>
+					<div class="sexSelect">
+						<div class="setPic clearfix">
+							<img class="sexBoy fl" src="/website/images/seo/report_sexBoy.png" />
+							<img class="sexGirl fr" src="/website/images/seo/report_sexGirl.png" />
+						</div>
+						<div class="setTxt clearfix">
+							<div class="sexBoyTxt fl">
+								男宝宝
+							</div>
+							<div class="sexGirlTxt fr">
+								女宝宝
+							</div>
+						</div>
+					</div>
+                                        <!--
+					<div class="early">
+						<input class="earlyBirth earlyBtn fl" type="checkbox" name="" id="" value="" />
+						<span class="earlyBirthTxt fl">早产宝宝</span>
+					</div>
+					<div class="earlyTxt">
+						如果是早产宝宝，此项将用于月龄矫正，对发育评估很重要。
+					</div> -->
+					<div class="measureHeight">
+						<span class="mHeightTxt">昵称</span>
+						<input class="mHeightNum" type="text" name="" id="mn" value="" placeholder="您的宝宝怎么称呼" />
+						<span class="mHeightUnit fr"></span>
+					</div>
+					<div class="immediate">
+						<div class="big" id='save'>
+							立即评测
+						</div>
+                                                <!--
+						<div class="small">
+							<%= memberAge %>的生长发育情况
+						</div>-->
+					</div>
+
+				</form>
+				<!--page2-->
+				<div class="pageOther" style='display:none' id='prev_eva'>
+					<div class="pageHead">
+						
+					</div>
+					<div class="pageContainer">
+						<div class="pageBirthData">
+							<span class="pageTxt">记录日期:</span><span class="pageBlue"></span>
+						</div>
+						<div class="pageWeight">
+							<span class="pageTxt">体重:</span><span class="pageBlue"></span>kg
+						</div>
+						<div class="pageHeight">
+							<span class="pageTxt">身长:</span><span class="pageBlue"></span>cm
+						</div>
+					</div>
+					<div class="pageBtn clearfix">
+						<div class="add fl">
+							添加数据
+						</div>
+						<div class="check fr">
+							查看报告
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--主体添加内容结束-->
+			<div id="subRight">
+				<br>
+				<div class="title">关注宝宝 成长测评</div>
+				<p>
+                                    <img src="/website/images/seo/seo_picTest.jpg" />
+				</p>
+			</div>
+		</div>
+                
+		<br class="clear" />
+		<!--悬浮窗-->
+		
+		<div class="subFooter">Copyright 2013-2015 凡鱼创想. All Rights Reserved
+			<br>京ICP备13035987号 <a href="/mis/document/certificate_view">京卫网审[2014]第0226号</a>
+		</div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</body>
+	<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+	<script src="/website/javascripts/jquery.flot.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/website/javascripts/jquery.flot.navigate.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/website/javascripts/mobiscroll.custom-2.16.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="/javascripts/seo/download.js"></script>
+	<script src="/website/javascripts/seo/graph.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/website/javascripts/seo/report_index.js" type="text/javascript" charset="utf-8"></script>
+	
+
+</html>

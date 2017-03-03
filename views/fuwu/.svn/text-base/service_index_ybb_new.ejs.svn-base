@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css?v=20161220" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_ybb_new.css?v=20161220" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<title>
+			<% if(para.tpc == 'ybb'){%>问儿科医生
+			<%}else if(para.tpc == 'ybb_yq'){%>问产科医生
+			<%}else{%>专家咨询服务_小鲤鱼育儿_母婴私人医生
+			<%}%>
+		</title>
+	</head>
+
+	<body style="background-color:#f2f4f7">
+		<div class="newerke erke">
+			<div class="newerkejia">
+				<img src="/website/images/fuwu/sanjia.png" alt="" class='sanjia' />
+				<em class='jiage erjiage'>
+            		<i><small>￥</small>99 <del>￥200</del></i>
+            </em>
+				<p class='tuik'><span>·</span>&nbsp;&nbsp;不满意无条件退款&nbsp;&nbsp;<span>·</span></p>
+			</div>
+			<div class="ernav">
+				<div></div>
+				<a href="/fuwu/sale_page?spid=13">
+					<img src="/website/images/fuwu/kesou.png" alt="" class="rep_src">
+					<span>咳嗽</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=14">
+					<img src="/website/images/fuwu/fashao.png" alt="" class="rep_src">
+					<span>发热</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=16">
+					<img src="/website/images/fuwu/outu.png" alt="" class="rep_src">
+					<span>呕吐</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=19">
+					<img src="/website/images/fuwu/shiyu.png" alt="" class="rep_src">
+					<span>食欲不振</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=17">
+					<img src="/website/images/fuwu/pizhen.png" alt="" class="rep_src">
+					<span>皮疹</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=15">
+					<img src="/website/images/fuwu/fuxie.png" alt="" class="rep_src">
+					<span>腹泻</span>
+				</a>
+				<a href="/fuwu/sale_page?spid=20">
+					<img src="/website/images/fuwu/guomin.png" alt="" class="rep_src">
+					<span>过敏</span>
+				</a>
+				<a href="/fuwu/sale_custom?spid=1&title=问儿科医生">
+					<img src="/website/images/fuwu/moredis.png" alt="" class="rep_src">
+					<span>其他儿科问题</span>
+				</a>
+			</div>
+		</div>
+		<!--订单提示-->
+		<% if(st){ %>
+		<div class="order" cu="<%- st.cu %>" cm="<%- st.cm %>" style="display:none;">
+			<img src="/website/images/fuwu/al.png" alt="" />
+			<span><%- st.d %>，<%- st.cm %>&nbsp;&nbsp;></span>
+		</div>
+		<% } %>
+		<!--热门问题-->
+		<div class="hotq yhotq ynhotq">
+			<div class="hotti">
+				<img src="/website/images/fuwu/hotsale.png" alt="" class="hotsale" />
+				<img src="/website/images/fuwu/ynewhotchan.png" alt="" class="yspe" />
+				<% if(clurl){%>
+				<a href="<%- clurl %>"><img src="/website/images/fuwu/myorder.png" alt="" class='myorder' /></a>
+				<%}%>
+				<span>截止 2016/12/30</span>
+				<i class='ynjump'>
+					<em>去儿科</em>
+					<img src="/website/images/fuwu/ynarr.png" alt="" class='change'/>
+				</i>
+			</div>
+			<ul class="erhot">
+				<% for(var i = 0; i < sp.length; i++){ %>
+				<li spid="<%- sp[i].id %>" class="click_spid" awu="<%- sp[i].awu %>">
+					<img src="<%- sp[i].iu %>" alt="" />
+					<% if(sp[i].op != 0){ %>
+					<!--<div class="abst">
+						<p>
+							<%- sp[i].d %>
+						</p>
+					</div>-->
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="salepri"><small>￥</small>
+							<%- parseInt(sp[i].fp) %>.<small><%- (sp[i].fp).substr((sp[i].fp).indexOf('.')+1) %></small></p>
+						<p class="oldpri"><del>￥<%- sp[i].op %>.0</del></p>
+						<!--<span class="wantask">马上问</span>-->
+					</div>
+					<% }else{ %>
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="qask">
+							<%- sp[i].d %>
+						</p>
+					</div>
+					<% } %>
+				</li>
+				<% } %>
+			</ul>
+			<ul class="chanhot">
+				<% for(var i = 0; i < sp.length; i++){ %>
+				<li spid="<%- sp[i].id %>" class="click_spid" awu="<%- sp[i].awu %>">
+					<img src="<%- sp[i].iu %>" alt="" />
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="qask">
+							<%- sp[i].d %>
+						</p>
+					</div>
+				</li>
+				<% } %>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="ynowbook ynbook">
+			<div class='chanke'>
+				<!--产科儿科有价格切换start-->
+				<!--<div class="haspri">
+					<img src="/website/images/fuwu/yte.png" alt="" class='yjilu' />
+					<img src="/website/images/fuwu/sanjia.png" alt="" class='sanjia' />
+					<em class='jiage'>
+				<i><small>￥</small>99 <del>￥200</del></i>
+			    </em>
+				</div>-->
+				<!--产科无价格-->
+				<div class="nopri" data-value="问产科医生">
+					<img src="/website/images/fuwu/chankenopr.png" alt="" class="erkenopr" />
+				</div>
+				<!--产科儿科有价格切换end-->
+				<!--儿科无价格不点击start-->
+				<!--<div class="nopri">
+					<img src="/website/images/fuwu/erkenopr.png" alt="" class="erkenopr"/>
+				</div>-->
+				<!--儿科无价格不点击end-->
+				<a href="javascript:;" class='firstsale'>立即预约</a>
+				<p class='tuik'><span>·</span>&nbsp;&nbsp;不满意无条件退款&nbsp;&nbsp;<span>·</span></p>
+			</div>
+			<!--儿科有点击样式-->
+			<!--<div class='erke'>-->
+			<!--显示价格样式start-->
+			<!--<div class='erkepr'>
+					<img src="/website/images/fuwu/yberke.png" alt="" class='yberke' />
+					<img src="/website/images/fuwu/sanjia.png" alt="" class='sanjia' />
+					<em class='jiage erjiage'>
+            		<i><small>￥</small>99 <del>￥200</del></i>
+            	</em>
+					<p class='tuik'><span>·</span>&nbsp;&nbsp;不满意无条件退款&nbsp;&nbsp;<span>·</span></p>
+				</div>-->
+			<!--显示价格样式end-->
+			<!--不显示价格样式start-->
+			<!--<div class="noerkepr">
+					<img src="/website/images/fuwu/sanjia.png" alt="" class='sanjia' />
+					<img src="/website/images/fuwu/border.png" alt="" class='border'/>
+				</div>-->
+			<!--不显示价格样式end-->
+			<!--疾病列表-->
+			<!--<div class="ernav">
+					<a href="/fuwu/sale_page?spid=13">
+						<img src="/website/images/fuwu/kesou.png" alt="" class="rep_src">
+						<span>咳嗽</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=14">
+						<img src="/website/images/fuwu/fashao.png" alt="" class="rep_src">
+						<span>发热</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=16">
+						<img src="/website/images/fuwu/outu.png" alt="" class="rep_src">
+						<span>呕吐</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=19">
+						<img src="/website/images/fuwu/shiyu.png" alt="" class="rep_src">
+						<span>食欲不振</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=17">
+						<img src="/website/images/fuwu/pizhen.png" alt="" class="rep_src">
+						<span>皮疹</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=15">
+						<img src="/website/images/fuwu/fuxie.png" alt="" class="rep_src">
+						<span>腹泻</span>
+					</a>
+					<a href="/fuwu/sale_page?spid=20">
+						<img src="/website/images/fuwu/guomin.png" alt="" class="rep_src">
+						<span>过敏</span>
+					</a>
+					<a href="/fuwu/sale_custom?spid=1">
+						<img src="/website/images/fuwu/moredis.png" alt="" class="rep_src">
+						<span>其他儿科问题</span>
+					</a>
+				</div>
+			</div>-->
+		</div>
+		<!--最新咨询-->
+		<div class="section sersection ysection">
+			<!--<img src="/website/images/fuwu/brandborder.png" alt="" class="branborder" />-->
+			<div class="title">
+				<img src="/website/images/fuwu/qa2.png" alt="" />
+				<span>最新咨询</span>
+			</div>
+		</div>
+		<!--<div class="float float_ybb" f="0">
+			<div class="flcenter">
+				<p><span class="bott_text">问儿科医生</span>：<span><small>￥</small>99.0</span></p>
+				<img src="/website/images/fuwu/tehui.png" alt="" class="tehui" />
+				<img src="/website/images/fuwu/fast.png" alt="" class="fast" />
+			</div>
+		</div>-->
+		<!--有价格浮层-->
+		<div class="ffloat float float_ybb" f="0">
+			<div class="fprice">
+				<p><small>￥</small>99<span>￥<del>200</del></span></p>
+			</div>
+			<div class="fask">
+				<img src="/website/images/fuwu/ferke.png" alt="" />
+			</div>
+		</div>
+		<!--无价格浮层-->
+		<div class="ffloat nofloat float_ybb" f="0" data-value="问产科医生">
+			<img src="/website/images/fuwu/noprichan.png" alt="" class="noprifloat" />
+		</div>
+	</body>
+	<script>
+		var symid = '';
+		var spid = '';
+		var pk = '';
+		var dpk = '<%- dpk %>';
+		var get_related_orders_http = '<%- get_related_orders_http %>';
+		var get_sym_disease_http = '<%- get_sym_disease_http %>';
+		var sale_page_http = '<%- sale_page_http %>';
+		var sale_custom_http = '<%- sale_custom_http %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		var write_log_http = '<%- write_log_http %>';
+		var new_order_http = '<%- new_order_http %>';
+		var upload_http = '<%- upload_http %>';
+		var uuid = '<%- uuid %>';
+		var opt = {
+			domain: '.xiaoly.com',
+			path: '/'
+		};
+		$.cookie('ssid', 0, opt);
+		$.cookie('page_id', 0, opt);
+	</script>
+	<script type="text/javascript" src="/website/javascripts/fuwu/base.js?v=20161220"></script>
+	<script>
+		if($('.myorder').length != 0) {
+			$('.ynjump').addClass('ynjump-or');
+		}
+	</script>
+
+</html>

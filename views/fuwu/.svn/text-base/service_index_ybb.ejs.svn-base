@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<title><% if(para.tpc == 'ybb'){ %>问儿科医生<% }else if(para.tpc == 'ybb_yq'){ %>问产科医生<% }else{ %>专家咨询服务_小鲤鱼育儿_母婴私人医生<% } %></title>
+	</head>
+
+	<body style="background-color:#fff">
+		<div class="ysertop">
+			<% if(para.tpc == 'ybb'){ %>
+			<img src="/website/images/fuwu/erkebg.png" alt="问儿科医生" />
+			<% }else{ %>
+			<img src="/website/images/fuwu/chankebg.png" alt="问产科医生" />
+			<% } %>
+			<% if(clurl){%>
+				<a href="<%- clurl %>" class="amyser"><img src="/website/images/fuwu/myser.png" alt="" class="myser" /></a>
+				<%}%>
+		</div>
+		<div class="ynowbook">
+			<% if(para.tpc == 'ybb'){ %>
+			<img src="/website/images/fuwu/yaskerke.png" alt="" class="ynowask" />
+				<span class='yjump'>切换到产科</span>
+			<% }else{ %>
+			<img src="/website/images/fuwu/yaskchanke.png" alt="" class="ynowask" />
+				<span class='yjump'>切换到儿科</span>
+			<% } %>
+			<div class="ydoctor">
+				<img src="/website/images/fuwu/yassit.png" alt="" class="yassit" />
+				<img src="/website/images/fuwu/ybookarr.png" alt="" class="ybookarr" />
+				<img src="/website/images/fuwu/tdoctor.png" alt="" class="tdoctor" />
+				<div class="bookword">
+					<h3 class="assit">健康顾问，10分钟内<br>主动联系整理病情</h3>
+					<h3 class="sdoc">三甲医院、对症专家<br>一对一通话指导</h3>
+				</div>
+			</div>
+			<div class="firstsale">
+               <h5><i>￥</i>99<del>￥200</del></h5>
+			</div>
+			<div class="yserinfo">
+				<p><span>·</span>&nbsp; 缩短病程   <span>·</span> 减轻伤害  <span>·</span>&nbsp;<br>不满意无条件退款</p>
+			</div>
+			<img src="/website/images/fuwu/brandborder.png" alt="" class="branborder" />
+		</div>
+		<!--订单提示-->
+		<% if(st){ %>
+		<div class="order" cu="<%- st.cu %>" cm="<%- st.cm %>" style="display:none;">
+			<img src="/website/images/fuwu/al.png" alt="" />
+			<span><%- st.d %>，<%- st.cm %>&nbsp;&nbsp;></span>
+		</div>
+		<% } %>		
+		<!--热门问题-->
+		<div class="hotq yhotq">
+			<div class="hotti">
+				<img src="/website/images/fuwu/hotsale.png" alt="" class="hotsale"/>
+				<img src="/website/images/fuwu/yspewo.png" alt="" class="yspe"/>
+				<span>截止 2016/12/30</span>
+			</div>
+			<ul>
+				<% for(var i = 0; i < sp.length; i++){ %>
+				<li spid="<%- sp[i].id %>" class="click_spid" awu="<%- sp[i].awu %>">
+					<img src="<%- sp[i].iu %>" alt="" />
+					<% if(sp[i].op != 0){ %>
+					<!--<div class="abst">
+						<p>
+							<%- sp[i].d %>
+						</p>
+					</div>-->
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="salepri"><small>￥</small>
+							<%- parseInt(sp[i].fp) %>.<small><%- (sp[i].fp).substr((sp[i].fp).indexOf('.')+1) %></small></p>
+						<p class="oldpri"><del>￥<%- sp[i].op %>.0</del></p>
+						<!--<span class="wantask">马上问</span>-->
+					</div>
+					<% }else{ %>
+					<div class="serprice">
+						<h3><%- sp[i].n %></h3>
+						<p class="qask">
+							<%- sp[i].d %>
+						</p>
+					</div>
+					<% } %>
+				</li>
+				<% } %>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<!--最新咨询-->	
+		<div class="section sersection ysection">
+			<img src="/website/images/fuwu/brandborder.png" alt="" class="branborder" />
+			<div class="title">
+				<img src="/website/images/fuwu/qa2.png" alt="" />
+				<span>最新咨询</span>
+			</div>
+		</div>
+		<!--<div class="float float_ybb" f="0">
+			<div class="flcenter">
+				<p><span class="bott_text">问儿科医生</span>：<span><small>￥</small>99.0</span></p>
+				<img src="/website/images/fuwu/tehui.png" alt="" class="tehui" />
+				<img src="/website/images/fuwu/fast.png" alt="" class="fast" />
+			</div>
+		</div>-->
+		<div class="ffloat float float_ybb" f="0">
+			<div class="fprice">
+				<p><small>￥</small>99<span>￥<del>200</del></span></p>
+			</div>
+			<div class="fask">
+				<img src="/website/images/fuwu/ferke.png" alt="" />
+			</div>
+		</div>
+	</body>
+	<script>
+		var symid = '';
+		var spid = '';
+		var pk = '';
+		var dpk = '<%- dpk %>';
+		var get_related_orders_http = '<%- get_related_orders_http %>';
+		var get_sym_disease_http = '<%- get_sym_disease_http %>';
+		var sale_page_http = '<%- sale_page_http %>';
+		var sale_custom_http = '<%- sale_custom_http %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		var write_log_http = '<%- write_log_http %>';
+		var new_order_http = '<%- new_order_http %>';
+		var upload_http = '<%- upload_http %>';
+		var uuid = '<%- uuid %>';
+		var opt = { domain: '.xiaoly.com' , path: '/'};
+			$.cookie( 'ssid', 0, opt);
+			$.cookie( 'page_id', 0, opt);
+	</script>
+	<script type="text/javascript" src="/website/javascripts/fuwu/base.js?v=20161214"></script>
+</html>

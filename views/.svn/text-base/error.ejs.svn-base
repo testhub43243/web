@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1">   
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="http://www.tiaolm.com/mis/css/website.css" />
+	<title>小鲤鱼育儿</title>
+</head>
+
+<body>
+<div id="homeTop">
+	<div class="logo"><a class="btnHome" href="http://www.tiaolm.com/mis/doc_index/"><span></span></a></div>
+</div>
+
+<div class="p404">
+	<div>
+        <img src="http://www.tiaolm.com/mis/images/404.png" /><br />
+        <%= message%>
+    </div>
+    <div class="warp">
+        <a href="http://www.tiaolm.com/mis/doc_index/">首页</a>
+        <a href="http://www.tiaolm.com/mis/">发育评测</a>
+    </div>
+</div>
+
+<div id="footer">Copyright © 2013-2016 凡鱼创想. All Rights Reserved</div>
+</body>
+</html>

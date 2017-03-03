@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><% if(para.hospital_name){ %><%- para.hospital_name %>&nbsp;-&nbsp;<%- para.ward_name %><% } %></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="wap-font-scale" content="no">
+    <link rel="stylesheet" href="/website/stylesheets/weixin/css.css">
+</head>
+<body>
+<script>
+    var winHeight = document.body.clientHeight;var Html = document.getElementsByTagName('html');Html[0].style.fontSize = winHeight / 6.4 + 'px';
+	var hospital_check_statistics_http = '<%- hospital_check_statistics_http %>';
+	var hospital_id = '<%- para.hospital_id %>';
+	var ward_id = '<%- para.ward_id %>';
+	var openid = '<%- para.openid %>';
+	var hospital_name = '<%- para.hospital_name %>';
+	var ward_name = '<%- para.ward_name %>';
+</script>
+<!-- start -->
+
+    <div class="top">
+        <a href="#" class="top-left return_checkin"></a>
+        <b><%- formatDate(para.start_date,"YYYY-M-D") %>入院（<%- total %>）</b>
+    </div>
+    
+    <div class="ChuYuanMingXi-cen JinRiRuYuan">
+    	<% for(var i = 0; i < list.length; i++){ %>
+        <span <% if(list[i].check_out_status == 1) {%>class="active" <% } %>>
+            <em>
+                <div class="c-name"><b><%- list[i].mom_name %></b><i><%- list[i].patient_identify %></i></div>
+                <div class="r-time">年龄：<%- list[i].mom_age %><i></i>预产期：<%- formatDate(list[i].due_date,'M-D') %></div>
+            </em>
+            <em>
+                <div class="chanfu-jiashu"><p>产妇：<%- list[i].mom_tel %></p><p>家属：<%- list[i].dad_tel %></p></div>
+            </em>
+        </span>
+        <% } %>
+        <!--<span class="active">
+            <em>
+                <div class="c-name"><b>张庆新1</b><i>0122234</i></div>
+                <div class="r-time">年龄：28<i></i>预产期：8-12</div>
+            </em>
+            <em>
+                <div class="chanfu-jiashu"><p>产妇：1801111111</p><p>家属：1801111111</p></div>
+            </em>
+        </span>
+        <span>
+            <em>
+                <div class="c-name"><b>张庆新1</b><i>012234</i></div>
+                <div class="r-time">年龄：28<i></i>预产期：8-12</div>
+            </em>
+            <em>
+                <div class="chanfu-jiashu"><p>产妇：1801111111</p><p>家属：1801111111</p></div>
+            </em>
+        </span>-->
+    </div>
+
+    <!--<div class="foot-as">
+        <a href="#">数据统计</a>
+    </div>-->
+<!-- end -->
+    <script src="/website/javascripts/zepto.min.js"></script>
+    <script src="/website/javascripts/weixin/ind.js"></script>
+    <script>
+    	//入院详情->入院统计
+	$('.return_checkin').on('click',function(){
+		window.location.href = hospital_check_statistics_http + '?ward_id=' + ward_id 
+															  + '&hospital_id=' + hospital_id 
+															  + '&type=1' 
+															  + '&openid=' + openid
+															  + '&hospital_name=' + hospital_name
+															  + '&ward_name=' + ward_name;
+	});
+    </script>
+</body>
+</html>

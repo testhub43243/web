@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/fuwu/service_h5.css" />
+		<script type="text/javascript" src="/website/javascripts/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/jquery.cookie.js"></script>
+		<!--<title><%- sn %>_专家咨询_小鲤鱼育儿_母婴私人医生</title>-->
+		<title>对症专家咨询服务</title>
+	</head>
+	<body style="background-color:#fff">
+		<div class="top">
+			<p>对症专家咨询服务</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+			<input type="hidden" id="in_title" value="<%- title %>" />
+		</div>
+		<div class="distitle">
+			<div class="dis">
+				<p><%- sn %></p>
+				<p>对应的疾病</p>
+			</div>
+			<div class="age">
+				<%  var flag = false;
+					for(var i = 0; i < dl.length - 1; i++){ 
+						if( dl[i].as != dl[i+1].as ){
+							flag = true;
+							break;
+						}
+					}
+				%>
+				<% if( flag ){ %>
+				<span><% if(dl.length > 0) { %><%- dl[0].as %><% } %></span>
+				<img src="/website/images/fuwu/more.png" alt="下拉显示更多" class="more" id="more"/>
+				<% } %>
+			</div>
+			<ul class="agebox" id="agebox">
+				<% var age_string = undefined; %>
+				<% for(var i = 0; i < dl.length; i++){ 
+					if( age_string != dl[i].as) { %>
+						<li ab="<%- dl[i].ab %>"><%- dl[i].as %></li>
+					<% } %>
+					<% age_string = dl[i].as; %>
+				<% } %>
+				<!--<li>2-3岁</li>-->
+			</ul>
+		</div>
+		<!--疾病列表-->
+		<!--first-->
+		<% 	var arr = [], dd = '', dn = '';
+			var dict = dl;
+			for(var k = 0; k < dl.length - 1; k++){
+				if( dl[k].ssid == dl[k+1].ssid ){
+					dl[k+1].dn = dl[k].dn + ' ' + dl[k+1].dn;
+					dd = '';
+					for(var m = 0; m < dl.length; m++){
+						if( k == m ){
+							dd += '<span class="keshi">' + dl[m].dd +'</span>';
+						}else if( dl[k].ssid == dl[m].ssid && dl[k].dd != dl[m].dd ){
+							dd += '<span class="keshi">' + dl[m].dd +'</span>';
+						}
+					}
+				}else{
+					if(dd == ''){
+						dd += '<span class="keshi">' + dl[k].dd +'</span>';
+					}
+					dl[k].dd = dd;
+					arr.push(dl[k]);
+					if( k+1 == dl.length - 1 ){
+						dl[k+1].dd = '<span class="keshi">' + dl[k+1].dd +'</span>';
+						arr.push(dl[k+1]);
+					}
+					dd = '';
+				}
+			}
+		%>
+		
+		<% var age_begin = undefined; %>
+		<% for(var i = 0; i < dl.length; i++){ %>
+			<% if( age_begin != dl[i].ab) { %>
+				<div class="dislist <% if(i == 0){%>active<% } %>" ab="<%- dl[i].ab %>">
+					<ul><% var ssid = dl[i].ssid; %>
+						<% for(var j = 0; j < arr.length; j++){ %>
+							<% if(dl[i].ab == arr[j].ab){ %>
+								<li ssid="<%- arr[j].ssid %>" did="<%- arr[j].did %>" dtk="<%- arr[j].dtk %>">
+									<div>
+										<h5><%- arr[j].sss %></h5>
+										<p><%- arr[j].dn %></p>
+										<div class="keshibox">
+											<%- arr[j].dd %>
+										</div>
+										<span class="docnum">有<%- arr[j].drn %>位对症专家可咨询</span>
+										<img src="/website/images/fuwu/rigtharr.png" alt="" />
+									</div>
+								</li>
+							<% } %>
+						<% } %>
+					</ul>
+				</div>
+			<% } %>
+			<% age_begin = dl[i].ab; %>
+		<% } %>
+		<!--second-->
+		
+		<!--<div class="call">
+			<div>
+				<p>无法判断可能疾病</p>
+				<p>请呼叫健康顾问</p>
+			</div>
+			<a href="tel:4000-900-666">
+			    <p>4000-900-666</p>
+			    <p>9:00-21:00</p>
+			</a>
+		</div>-->
+		<!--浮层-->
+		<!--<div class="float">
+			<div class="flcenter">
+				<p><span class="bott_text">问儿科医生</span>：<span><small>￥</small>129.0</span></p>
+				<img src="/website/images/fuwu/tehui.png" alt="" class="tehui" />
+				<img src="/website/images/fuwu/fast.png" alt="" class="fast" />
+			</div>
+		</div>-->
+		<div class="ffloat gfloat float">
+			<div class="fprice">
+				<p><small>￥</small>99<span>￥<del>200</del></span></p>
+			</div>
+			<div class="fask">
+				<img src="/website/images/fuwu/ferke.png" alt="" />
+			</div>
+		</div>
+		<script>
+			var get_disease_detail_http = '<%- get_disease_detail_http %>';
+			var pk = undefined;
+			var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+			var write_log_http = '<%- write_log_http %>';
+			var upload_http = undefined;
+			var uuid = '<%- uuid %>';
+			var sale_custom_http = '<%- sale_custom_http%>'
+		</script>
+		<script type="text/javascript" src="/website/javascripts/fuwu/base.js"></script>
+	</body>
+</html>

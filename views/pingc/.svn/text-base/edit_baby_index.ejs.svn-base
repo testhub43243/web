@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<link rel="stylesheet" href="/website/stylesheets/weixin/mobiscroll.custom-2.16.1.min.css?v=7625">
+		<link rel="stylesheet" href="/website/stylesheets/pingc/pingce.css?v=7625" />
+		<script type="text/javascript" src="/website/javascripts/zepto.min.js?v=7625"></script>
+		<script src="/website/javascripts/weixin/mobiscroll.custom-2.16.1.min.js?v=7625"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.client.js"></script>
+		<script type="text/javascript" src="/website/javascripts/libs/zepto.cookie.min.js"></script>
+		<title>修改宝宝资料</title>
+	</head>
+
+	<body>
+		<div class="top">
+			<p>宝宝资料</p>
+			<a href="javascript:void(0);" class="click_back"></a>
+		</div>
+		<% for(var i = 0; md && i < md.length; i++){ if(md[i].mid == para.mid){ %>
+		<div class="editbaby">
+			<dl>
+				<dd>
+					<span>宝宝昵称</span>
+					<input type="text" id="in_name" value="<%- md[i].n %>" maxlength="16" placeholder="请输入宝宝姓名" />
+					<input type="hidden" id="in_mid" value="<%- para.mid %>" />
+				</dd>
+				<dd>
+					<span>宝宝生日</span>
+					<input type="text" class="date" b="<%- md[i].b %>" id="in_b" value="<%- md[i].b %>" />
+				</dd>
+			</dl>
+		</div>
+		<div class="babysex" sex="<%- md[i].sex %>">
+			<div class="sex boy">
+				<input type="radio" name="sex" id="boy" value="1" <% if(md[i].sex==1){ %>checked<% } %>/>
+				<label for="boy"></label>
+			</div>
+			<div class="sex girl">
+				<input type="radio" name="sex" id="girl" value="0" <% if(md[i].sex==0){ %>checked<% } %>/>
+				<label for="girl"></label>
+			</div>
+		</div>
+		<div class="tailing">
+			<h3>
+				<div class="chs">
+					<input type="checkbox" id="tail" <% if(md[i].ga_or_ed != 0 ){ %>checked<% } %> />
+					<label for="tail">填写出生胎龄或预产期</label>
+				</div>
+			</h3>
+			<p>早产宝宝，此项将用于月龄矫正，对发育评估很重要。您可在宝宝出生证明上查到胎龄记录
+			</p>
+		</div>
+		<div class="datebox">
+			<div class="yuchanqi">
+				<div class="chs tchs">
+					<input type="radio" id="tailing" name="date" value="2" <% if(md[i].ga_or_ed != 1 ){ %>checked<% } %> />
+					<label for="tailing">我记得胎龄</label>
+				</div>
+				<div class="chs ychs">
+					<input type="radio" id="chanqi" name="date" value="1" <% if(md[i].ga_or_ed == 1 ){ %>checked<% } %> />
+					<label for="chanqi">我记得预产期</label>
+				</div>
+			</div>
+			<!--预产期-->
+			<div class="ydatebox">
+				<div class="yuchandate">
+					<span>预产期</span><input type="text" id="in_exp_date" placeholder="" f='1' />
+					<input type="hidden" id="hid_date" value="<% if(md[i].ga_or_ed == 1 && md[i].ga != '' && md[i].ga != null){ %><%- md[i].ga %><% } %>" />
+				</div>
+				<p class="yunweek week">出生时为孕40周0天，足月</p>
+			</div>
+			<!--胎龄-->
+			<div class="tdatebox">
+				<div class="tailingdate">
+					<span>孕</span>
+					<input type="text" class="week_day" id="in_week" placeholder="40" value="40" />
+					<span>周</span>
+					<input type="text" class="week_day" id="in_day" placeholder="0" value="0" />
+					<span>天</span>
+					<input type="hidden" class="age" placeholder="" value="40-0" />
+				</div>
+				<p class="yunweek day">出生时为孕40周0天，足月</p>
+			</div>
+		</div>
+		<a href="javascript:;" class="databtn edit_baby_info">保存</a>
+		<% ;break;}} %>
+	</body>
+	<script>
+//		var birth = new Date('<% if(md.length > 0 && md[0].b != null && md[0].b != ''){ %><%- (md[0].b).replace(/-/g,"/") %><% } %>');
+		var birth = null;
+		var edit_baby_http = '<%- edit_baby_http %>';
+		var write_log_http = '<%- write_log_http %>';
+		var get_babys_list_http = '<%- get_babys_list_http %>';
+		var eva_report_http = '<%- eva_report_http %>';
+//		var ga = '<% if(md.length > 0 && md[0].ga != null && md[0].ga != ''){ %><%- parseInt(md[0].ga) %><% } %>';
+//		var ga_or_ed = '<% if( md.length > 0 ){ %><%- md[0].ga_or_ed %><% } %>';
+		var ga = null;
+		var ga_or_ed = null;
+		var mid = '<%- para.mid %>';
+		var get_cookie_uk_url = '<%- get_cookie_uk_url %>';
+		var week = 40;
+		var day = 0;
+		var md = <%- JSON.stringify(md) %>;
+		for(var i = 0; md && i < md.length; i++){
+			if(mid == md[i].mid){
+				birth = new Date((md[i].b).replace(/-/g,'/'));
+				ga = parseInt(md[i].ga);
+				ga_or_ed = md[i].ga_or_ed;
+				break;
+			}
+		}
+		console.log(birth);console.log(ga);console.log(ga_or_ed);
+		$(function(){
+			var max_date = new Date();
+			var opt = {
+				theme: 'android-holo-light',
+				lang: 'zh',
+				display: 'modal', //显示方式
+				mode: 'scroller',
+				controls: ['calendar'],
+				headerText: '宝宝生日',
+				dateFormat: 'yyyy-mm-dd',
+				setText: '确定',
+				cancelText: '取消',
+				minWidth: 65,
+				dayText: '',
+				monthText: '',
+				yearText: '',
+				dateOrder: 'yyyymmdd',
+				minDate: '',
+				maxDate: max_date,
+				onSelect: function(valueText,inst){
+//					if(valueText){
+//						$('#in_exp_date').val(valueText);
+//					}
+				}
+			}
+			var opt3 = $.extend(true, {}, opt);
+			opt3.maxDate = '';
+			$('.date').mobiscroll().date(opt);
+			<% if(md.length > 0 && md[0].b != null && md[0].b != ''){ %>
+				$('.date').mobiscroll('setDate', birth, true);
+			<% } %>
+			opt3.headerText = '预产期';
+			opt3.onSelect = function(valueText, inst){
+				if(valueText){
+					var arr = get_week_day(valueText);
+//					var num = parseInt($('#hid_date').val());
+					var str = $('#in_b').val();
+					var now = new Date();
+					if(arr[0] < 20 || arr[0] > 45){
+//						if(num != 0){
+//							var str = '';
+//							str = get_date(parseInt(num/7),parseInt(num%7));console.log(str);
+//							now = new Date(str.replace(/-/g,'/'));
+//						}
+						if(str != '' && str != undefined){
+							now = new Date(str.replace(/-/g,'/'));
+						}
+						alert('您填写的预产期与宝宝生日差异太大');
+						inst.setArrayVal([now.getFullYear(),now.getMonth(),now.getDate()],true);
+						arr = get_week_day(str || (now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate()))
+					}
+					$('.week').html('出生时为孕' + arr[0] + '周' + arr[1] + ((arr[0]>=37)?'天，足月':'天，早产') );
+					$('.age').val(arr[0] + '-' + arr[1]);
+					$('#in_week').val(arr[0]);
+					$('#in_day').val(arr[1]);
+				}
+			};
+			opt3.onBeforeShow = function(inst){
+    			var d = new Date($('#in_exp_date').val().replace(/-/g,'/'));
+				inst.setArrayVal([d.getFullYear(),d.getMonth(),d.getDate()],true);
+    		};
+    		
+			$('#in_exp_date').mobiscroll().date(opt3);
+			<% if(md.length > 0 && md[0].ga != null && md[0].ga != '' && md[0].ga != 0){ %>
+				var s = get_date( parseInt(ga/7), parseInt(ga%7));
+				$('#in_exp_date').mobiscroll('setDate', new Date(s.replace(/-/g,'/')), true);
+				week = parseInt(ga/7);
+				day = parseInt(ga%7);
+			<% }else{ %>
+				$('#in_exp_date').mobiscroll('setDate', new Date(), true);
+			<% } %>
+			var wheels = [[]];
+			for(var i = 0; i < wheels.length; i++){
+				for(var j = 0; j < 2; j++){
+					var keys = [];
+					var values = [];
+					if( j == 0){
+						for(var k = 0; k < 26; k++){
+							keys.push(k);
+							values.push((k + 20) + '周');
+						}
+					}else if(j == 1){
+						for(var k = 0; k < 7; k++){
+							keys.push(k);
+							values.push(k + '日');
+						}
+					}
+					wheels[i].push({keys: keys,values: values});
+				}
+			}
+			$('#in_week').val(week);
+			$('#in_day').val(day);
+          	var opt2 = {
+	          		theme: 'android-holo-light',
+	  			  	lang: 'zh',
+				  	display: 'modal', //显示方式
+				  	mode: 'scroller',
+				  	setText: '确定', 
+	                cancelText: '取消',
+	                headerText: '胎龄',
+				  	wheels:wheels,
+				  	onInit: function (inst) {
+				  		inst.setArrayVal([week-20, day]);
+				  	},
+				  	onSelect: function (valueText, inst) {
+				  		var data = inst.getArrayVal();
+				  		$('#in_week').val(parseInt(data[0]) + 20);
+						$('#in_day').val(parseInt(data[1]));
+						var str = get_date(parseInt(data[0]) + 20,parseInt(data[1]));
+						$('.day').html('预产期为' + str);
+						$('#in_exp_date').val(str);
+	  				},
+					onBeforeShow: function (inst) {
+						inst.setArrayVal([parseInt($('#in_week').val())-20,parseInt($('#in_day').val())],true);
+	  				},
+					formatValue: function (data) {
+						console.log(data);
+						return (20 + parseInt(data[0])) + '-' + data[1];
+					}
+	          	};
+	        $('.age').mobiscroll().scroller( opt2 );
+	        $('.week_day').on('click',function(){
+	        	$('.age').click();
+	        });
+	        
+		});
+		var str = '';
+		if( ga_or_ed == 0 ){
+			str = get_date(40,0);
+			str = '预产期为' + str;
+			$('.day').html( str );
+		}else if(ga_or_ed == 1){
+			str = '出生时为孕' + parseInt(ga/7) + '周' + parseInt(ga%7) + ((parseInt(ga/7) >= 37)?'天，足月':'天，早产');
+			$('.week').html( str );
+		}else if( ga_or_ed == 2 ){
+			str = get_date(parseInt(ga/7),parseInt(ga%7));
+			str = '预产期为' + str;
+			$('.day').html( str );
+		}
+		
+		function get_week_day(str){
+			if(!str){
+				return ;
+			}
+			str = str.replace(/-/g,'/');
+        	var d = new Date(str);
+        	var birth = new Date(($('#in_b').val()).replace(/-/g,"/"));
+        	var week = parseInt(parseInt((birth.getTime() - d.getTime())/(24*3600*1000) + 280)/7);
+        	var day = parseInt(parseInt((birth.getTime() - d.getTime())/(24*3600*1000) + 280)%7);
+        	return [week,day];
+        }
+        function get_date(week,day){
+        	var str = ($('#in_b').val()).replace(/-/g,"/");
+        	var birth = new Date(str);
+        	var mils = birth.getTime() + 280*24*3600*1000 - (parseInt(week)*7 + parseInt(day))*24*3600*1000;
+        	var d = new Date(mils);
+        	return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+        }
+	</script>
+	<script type="text/javascript" src="/website/javascripts/pingc/pingce.js?v=7628"></script>
+	<script type="text/javascript" src="/website/javascripts/libs/log.js"></script>
+</html>
